@@ -25,13 +25,13 @@ const LinkButton = ({ link, index }: LinkButtonProps) => {
         variant="ghost"
         className="h-auto w-full justify-start rounded-2xl border border-[hsl(240,20%,80%)] bg-white/90 px-4 py-4 text-left shadow-[0_14px_35px_-28px_hsla(240,100%,8%,0.6)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[hsl(240,100%,15%)] hover:bg-[hsl(240,100%,8%)] hover:text-[hsl(240,29%,97%)]"
       >
-        <span className="mr-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[hsl(240,29%,97%)] text-[hsl(240,100%,10%)] transition-colors group-hover:bg-[hsl(240,100%,12%)] group-hover:text-white">
+        <span className="mr-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[hsl(240,29%,97%)] text-[hsl(240,100%,10%)] transition-colors group-hover:bg-[hsl(240,29%,97%)] group-hover:text-[hsl(240,100%,8%)]">
           {IconComponent && <IconComponent className="h-5 w-5" />}
         </span>
         <span className="flex-1 text-base font-semibold tracking-[-0.01em]">
           {link.label}
         </span>
-        <ArrowUpRight className="h-4 w-4 text-[hsl(240,100%,10%)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
+        <ArrowUpRight className="h-4 w-4 text-[hsl(240,100%,10%)] transition-transform duration-300 group-hover:rotate-45 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
       </Button>
     </a>
   );

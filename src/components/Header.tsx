@@ -24,9 +24,9 @@ const Header = () => {
               alt={profile.name}
               loading="eager"
               fetchPriority="high"
-              decoding="async"
-              width={112}
-              height={112}
+              decoding="sync"
+              width={128}
+              height={128}
             />
             <AvatarFallback className="bg-secondary text-2xl font-semibold text-foreground">
               {initials}
@@ -52,6 +52,9 @@ const Header = () => {
         >
           <span className="rounded-full border border-[hsl(240,20%,80%)] bg-[hsl(240,29%,97%)] px-3 py-1 font-medium text-foreground">
             IA Aplicada
+          </span>
+          <span className="rounded-full border border-[hsl(240,20%,80%)] bg-[hsl(240,29%,97%)] px-3 py-1 font-medium text-foreground">
+            Growth
           </span>
           <span className="rounded-full border border-[hsl(240,20%,80%)] bg-[hsl(240,29%,97%)] px-3 py-1 font-medium text-foreground">
             Automação

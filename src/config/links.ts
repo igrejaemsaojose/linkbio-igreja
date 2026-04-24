@@ -17,7 +17,7 @@ export const links: LinkItem[] = [
   {
     id: "whatsapp",
     label: "WhatsApp",
-    url: "https://api.whatsapp.com/send?phone=5555999062078&text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20como%20implementar%20Agentes%20Inteligentes%20de%20IA%20&%20Automa%C3%A7%C3%A3o%20%20no%20meu%20neg%C3%B3cio.",
+    url: "https://wa.me/5555999062078?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20seus%20servi%C3%A7os.",
     icon: "MessageCircle",
   },
   {
@@ -40,8 +40,8 @@ export const links: LinkItem[] = [
   },
   {
     id: "biblioteca-materiais",
-    label: "Biblioteca",
-    url: "https://blog-cristian.vercel.app",
+    label: "Blog",
+    url: "https://blog-cristian-two.vercel.app",
     icon: "BookOpen",
   },
 ];
