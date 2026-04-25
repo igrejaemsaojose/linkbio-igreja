@@ -38,10 +38,4 @@ export const links: LinkItem[] = [
     url: "https://github.com/cr-dornelles",
     icon: "Github",
   },
-  {
-    id: "biblioteca-materiais",
-    label: "Blog",
-    url: "https://blog-cristian-two.vercel.app",
-    icon: "BookOpen",
-  },
 ];
