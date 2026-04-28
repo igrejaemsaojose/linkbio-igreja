@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { LinkItem, links } from "@/config/links";
+import { useLocale } from "@/lib/i18n";
 import * as LucideIcons from "lucide-react";
 import { ArrowUpRight } from "lucide-react";
 
@@ -9,13 +10,14 @@ interface LinkButtonProps {
 }
 
 const LinkButton = ({ link, index }: LinkButtonProps) => {
+  const { t } = useLocale();
   const IconComponent = link.icon
     ? (LucideIcons[link.icon as keyof typeof LucideIcons] as React.ComponentType<{ className?: string }>)
     : null;
 
   return (
     <a
-      href={link.url}
+      href={t(link.url)}
       target="_blank"
       rel="noopener noreferrer"
       className="group block w-full animate-fade-in-up"
@@ -29,7 +31,7 @@ const LinkButton = ({ link, index }: LinkButtonProps) => {
           {IconComponent && <IconComponent className="h-5 w-5" />}
         </span>
         <span className="flex-1 text-base font-semibold tracking-[-0.01em]">
-          {link.label}
+          {t(link.label)}
         </span>
         <ArrowUpRight className="h-4 w-4 text-[hsl(240,100%,10%)] transition-transform duration-300 group-hover:rotate-45 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
       </Button>
@@ -38,14 +40,15 @@ const LinkButton = ({ link, index }: LinkButtonProps) => {
 };
 
 const LinkButtons = () => {
+  const { ui } = useLocale();
   return (
     <section className="w-full">
       <div className="mb-4 animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
         <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-          Acessos Rápidos
+          {ui.linksEyebrow}
         </p>
         <h2 className="mt-1 text-xl font-bold tracking-[-0.015em] text-foreground">
-          Meus Links
+          {ui.linksTitle}
         </h2>
       </div>
 

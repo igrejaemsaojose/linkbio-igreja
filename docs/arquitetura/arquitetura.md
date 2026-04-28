@@ -23,10 +23,11 @@ Objetivo principal:
 
 ## 3. Divisões do software
 
-- `src/pages/Index.tsx`: orquestra Header, links, destaque opcional e Footer.
-- `src/components/`: blocos reutilizáveis da interface.
-- `src/config/`: dados de conteúdo configurável (perfil, links, highlight, footer).
+- `src/pages/Index.tsx`: orquestra LocaleToggle, Header, links, destaque opcional e Footer.
+- `src/components/`: blocos reutilizáveis da interface, incluindo `LocaleToggle`.
+- `src/config/`: dados de conteúdo configurável (perfil, links, highlight, footer) — campos traduzíveis usam o tipo `Localized<T> = { pt: T; en: T }`.
 - `src/components/ui/`: biblioteca base shadcn/ui.
+- `src/lib/i18n.tsx`: i18n leve sem dependência externa — `LocaleProvider`, hook `useLocale()`, dicionário de UI e helper `t<T>(value: Localized<T>)`. Persistência em `localStorage` (`bio-cristian:locale`) com fallback para `navigator.language`.
 
 ## 4. Modelo de dados
 
@@ -50,6 +51,7 @@ Definido em `src/App.tsx`:
 - Conteúdo editável por arquivos de config para simplificar manutenção.
 - Mobile-first com largura central limitada (`max-w-md`).
 - Lazy-loading de `HighlightCard` e `Footer` para reduzir custo inicial.
+- i18n caseiro (PT/EN) em vez de `react-i18next` — volume baixo de strings e preferência por menos dependências. Idiomas suportados: `pt` (default) e `en`.
 
 ## 7. Lacunas conhecidas
 

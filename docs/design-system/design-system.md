@@ -118,6 +118,12 @@ Padroes de botoes:
 Padrao de card:
 - Fundo claro, borda suave, radius medio, padding generoso, hover com elevacao sutil.
 
+Padrao de seletor segmentado (`LocaleToggle`):
+- Container: pill (`rounded-full`), borda `hsl(240,20%,80%)`, fundo `bg-white/90`, padding interno `p-1`, leve sombra e `backdrop-blur-sm`.
+- Segmento ativo: fundo navy (`hsl(240,100%,8%)`), texto off-white (`hsl(240,29%,97%)`), peso semibold.
+- Segmento inativo: texto `foreground/70`, hover sobe para `foreground` cheio.
+- Aplicacao: alinhado a direita no topo do `main` (acima do Header).
+
 ## 6. Animacoes
 
 Definidas em `src/index.css` e usadas como classes `animate-*`:
