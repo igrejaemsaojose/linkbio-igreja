@@ -11,7 +11,7 @@ export const links: LinkItem[] = [
   {
     id: "servicos",
     label: "Serviços",
-    url: "https://lp-cristian.vercel.app",
+    url: "https://lp.crdornelles.com",
     icon: "Globe",
   },
   {
