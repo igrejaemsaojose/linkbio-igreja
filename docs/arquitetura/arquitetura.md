@@ -1,59 +1,88 @@
 # Arquitetura — bio-cristian
 
-Snapshot técnico do projeto em 2026-04-24.
+Snapshot tecnico do projeto em 2026-05-30.
 
-## 1. Visão de produto
+## 1. Visao de produto
 
-Aplicação estática para centralização de links da bio do Cristian, priorizando navegação rápida em mobile.
+Aplicacao estatica para centralizacao de links da bio do Cristian, priorizando navegacao rapida em mobile.
 
 Objetivo principal:
-- concentrar contatos e canais em um único endereço.
+- concentrar contatos e canais em um unico endereco.
 
 ## 2. Stack
 
-| Camada | Tecnologia |
+| Camada       | Tecnologia                             |
 |---|---|
-| Build / Dev | Vite 5 + SWC |
-| Linguagem | TypeScript 5 |
-| UI | React 18 + React Router v6 |
-| Estilo | Tailwind CSS 3 + shadcn/ui |
-| Estado | TanStack Query 5 |
-| Testes | Vitest + Testing Library |
-| Lint | ESLint 9 + typescript-eslint |
+| Linguagem    | HTML5 semantico                        |
+| Estilo       | CSS3 puro com custom properties        |
+| Scripts      | JavaScript vanilla (ES6+)              |
+| Dev server   | `npx serve . --listen 3000`            |
+| Build        | Sem build step                         |
+| Deploy       | Vercel sem build (`outputDirectory: .`)|
 
-## 3. Divisões do software
+## 3. Estrutura de arquivos
 
-- `src/pages/Index.tsx`: orquestra LocaleToggle, Header, links, destaque opcional e Footer.
-- `src/components/`: blocos reutilizáveis da interface, incluindo `LocaleToggle`.
-- `src/config/`: dados de conteúdo configurável (perfil, links, highlight, footer) — campos traduzíveis usam o tipo `Localized<T> = { pt: T; en: T }`.
-- `src/components/ui/`: biblioteca base shadcn/ui.
-- `src/lib/i18n.tsx`: i18n leve sem dependência externa — `LocaleProvider`, hook `useLocale()`, dicionário de UI e helper `t<T>(value: Localized<T>)`. Persistência em `localStorage` (`bio-cristian:locale`) com fallback para `navigator.language`.
+```
+bio-cristian/
+├── index.html            # pagina unica da aplicacao
+├── css/
+│   ├── reset.css         # reset de estilos
+│   ├── tokens.css        # CSS custom properties (design tokens)
+│   └── styles.css        # estilos da aplicacao + animacoes
+├── js/
+│   ├── i18n.js           # sistema de traducao leve (PT/EN)
+│   └── main.js           # ponto de entrada; inicializa i18n e logica de pagina
+├── translations/
+│   ├── pt.js             # dicionario em portugues
+│   └── en.js             # dicionario em ingles
+├── assets/
+│   └── images/
+│       └── avatar.png    # foto de perfil
+├── public/               # favicons e webmanifest (servidos estaticamente)
+├── vercel.json           # configuracao de deploy sem build
+├── package.json          # somente script `dev`
+├── CLAUDE.md             # contexto operacional para agente
+├── AGENTS.md             # equivalente ao CLAUDE.md
+└── docs/                 # arquitetura, instrucoes, historico e design-system
+```
 
-## 4. Modelo de dados
+## 4. i18n
 
-Sem banco de dados e sem backend.
+Sistema caseiro sem dependencias externas.
 
-Os dados da interface vivem em objetos TypeScript:
-- `src/config/profile.ts`
-- `src/config/links.ts`
-- `src/config/highlight.ts`
-- `src/config/footer.ts`
+- `translations/pt.js` e `translations/en.js` populam `window.__i18n.pt` e `window.__i18n.en`.
+- `js/i18n.js` detecta locale (localStorage → navigator.language → 'pt'), aplica textos em elementos `data-i18n`, e dispara evento `localechange` a cada troca.
+- Persistencia: `localStorage` com chave `bio-cristian:locale`.
+- `js/main.js` ouve `localechange` e atualiza o href do botao do WhatsApp conforme o idioma ativo.
 
-## 5. Roteamento
+## 5. Componentes de interface
 
-Definido em `src/App.tsx`:
-- `/` → `Index`
-- `*` → `NotFound`
+Todos em HTML semantico puro, sem framework:
 
-## 6. Decisões arquiteturais
+- **Toggle de idioma** — pill com dois botoes PT | EN; segmento ativo em navy.
+- **Card de perfil** — secao com avatar, nome, tagline, bio e tags.
+- **Lista de links** — cinco botoes com icone SVG inline, label i18n e seta de acao.
+- **Footer** — paragrafo com copy i18n.
 
-- Projeto 100% estático (sem API).
-- Conteúdo editável por arquivos de config para simplificar manutenção.
-- Mobile-first com largura central limitada (`max-w-md`).
-- Lazy-loading de `HighlightCard` e `Footer` para reduzir custo inicial.
-- i18n caseiro (PT/EN) em vez de `react-i18next` — volume baixo de strings e preferência por menos dependências. Idiomas suportados: `pt` (default) e `en`.
+## 6. Animacoes
 
-## 7. Lacunas conhecidas
+Definidas em `css/styles.css` com `@keyframes`:
 
-- `NotFound` ainda com copy genérica em inglês.
-- URLs externas dependem de implantação final dos destinos.
+| Animacao     | Duracao | Uso                          |
+|---|---|---|
+| fade-in-up   | 0.6s    | entrada escalonada dos elementos |
+| float        | 3s loop | avatar                       |
+| glow-pulse   | 2s loop | anel do avatar               |
+
+## 7. Deploy
+
+`vercel.json` com `framework: null` e `outputDirectory: "."`.
+Sem build step — a Vercel serve os arquivos estaticos diretamente.
+
+## 8. Decisoes arquiteturais
+
+- Migracao completa de React + Vite + TypeScript + Tailwind + shadcn para HTML5 + CSS3 + JS vanilla (mesma stack do projeto `lp-magnus` da Magnus Midias).
+- Zero dependencias em runtime.
+- Mobile-first com `max-width: 28rem` e padding horizontal de 20px.
+- Conteudo traduzivel via `data-i18n` sem transpilacao.
+- Icones SVG inline para evitar dependencias externas.

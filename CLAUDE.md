@@ -1,69 +1,68 @@
 # CLAUDE.md — bio-cristian
 
-Contexto operacional do projeto para agentes de código.
+Contexto operacional do projeto para agentes de codigo.
 
-## 1. Visão geral
+## 1. Visao geral
 
-`bio-cristian` é uma página de link da bio (mobile-first) para centralizar pontos de contato e entrada para outros ativos digitais do Cristian.
+`bio-cristian` e uma pagina de link da bio (mobile-first) para centralizar pontos de contato e entrada para outros ativos digitais do Cristian.
 
 Fluxo principal:
-- Avatar + nome + tagline.
-- Lista de CTAs externos em botões (`src/config/links.ts`).
-- Card de destaque opcional (`src/config/highlight.ts`).
+- Toggle de idioma PT | EN no canto superior direito.
+- Card de perfil: avatar + nome + tagline + bio + tags.
+- Lista de cinco botoes de link com icones SVG e label i18n.
+- Footer com copy i18n.
 
 ## 2. Stack
 
-- Vite 5 + React 18 + TypeScript 5
-- React Router v6
-- Tailwind CSS + shadcn/ui (Radix)
-- TanStack Query
-- Vitest + Testing Library
-- npm
+- HTML5 semantico
+- CSS3 puro com custom properties (sem framework de estilos)
+- JavaScript vanilla ES6+ (sem frameworks)
+- Dev server: `npx serve . --listen 3000`
+- Sem build step
+- Deploy: Vercel sem build (`outputDirectory: "."`)
 
 ## 3. Scripts
 
-- `npm run dev`
-- `npm run build`
-- `npm run build:dev`
-- `npm run preview`
-- `npm run lint`
-- `npm run test`
-- `npm run test:watch`
+- `npm run dev` — inicia servidor local na porta 3000
 
 ## 4. Estrutura relevante
 
-- `src/pages/Index.tsx` — composição da página.
-- `src/components/` — componentes de layout/CTA.
-- `src/config/` — dados editáveis de perfil e links.
-- `src/index.css` — tokens visuais e animações.
-- `docs/` — arquitetura, instruções, histórico e design-system.
+- `index.html` — pagina unica completa.
+- `css/tokens.css` — design tokens como CSS custom properties.
+- `css/styles.css` — estilos da aplicacao e animacoes.
+- `js/i18n.js` — sistema de i18n leve (PT/EN).
+- `js/main.js` — ponto de entrada; inicializa i18n e gerencia URL do WhatsApp.
+- `translations/pt.js` e `translations/en.js` — dicionarios de traducao.
+- `assets/images/avatar.png` — avatar principal.
+- `docs/` — arquitetura, instrucoes, historico e design-system.
 
-## 5. Ponteiros obrigatórios
+## 5. Ponteiros obrigatorios
 
 - Arquitetura: `docs/arquitetura/arquitetura.md`
-- Regras de trabalho: `docs/instrucoes/instrucoes.md`
-- Plano de ação: `docs/instrucoes/plano-de-acao-bio.md`
-- Histórico: `docs/historico/`
+- Historico: `docs/historico/`
 - Design system: `docs/design-system/design-system.md`
 
-## 6. Regra inegociável de histórico
+## 6. Regra inegociavel de historico
 
-Toda alteração relevante deve gerar um novo arquivo em `docs/historico/` com formato:
+Toda alteracao relevante deve gerar um novo arquivo em `docs/historico/` com formato:
 
 `NN-descricao-curta-AAAA-MM-DD.md`
 
+O proximo numero e `09`.
+
 ### Antes de alterar
-1. Ler histórico completo em ordem numérica.
+1. Ler historico completo em ordem numerica.
 2. Ler `docs/arquitetura/arquitetura.md`.
 3. Se tiver impacto visual, ler `docs/design-system/design-system.md`.
 
 ### Depois de alterar
 1. Criar registro em `docs/historico/`.
-2. Atualizar arquitetura se necessário.
-3. Atualizar instruções se o fluxo mudar.
-4. Atualizar design-system se tocar UI/tokens/assets.
+2. Atualizar arquitetura se necessario.
+3. Atualizar design-system se tocar UI/tokens/assets.
 
-## 7. Convenções
+## 7. Convencoes
 
-- Nomes de arquivos e pastas: ASCII, kebab-case, sem acentos.
-- Conteúdo interno dos arquivos: pt-BR.
+- Nomes de arquivos e pastas: ASCII puro, kebab-case, sem acentos.
+- Conteudo interno dos arquivos: pt-BR.
+- Icones: SVG inline, viewBox 0 0 24 24, stroke="currentColor", fill="none", stroke-width="1.5".
+- Links externos: `target="_blank" rel="noopener noreferrer"`.

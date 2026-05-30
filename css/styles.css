@@ -1,0 +1,345 @@
+/* styles.css — bio-cristian */
+
+/* =========================================================
+   ANIMAÇÕES
+   ========================================================= */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+
+/* =========================================================
+   BASE
+   ========================================================= */
+html {
+  font-family: var(--font-body);
+  color: var(--color-text);
+}
+
+body {
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, #ffffff 0%, #F4F4F9 100%);
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   BLOBS DECORATIVOS
+   ========================================================= */
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
+}
+
+.blob--top-left {
+  width: 260px;
+  height: 260px;
+  top: 96px;
+  left: -40px;
+  background: hsl(240, 100%, 15%, 0.10);
+}
+
+.blob--bottom-right {
+  width: 300px;
+  height: 300px;
+  bottom: 96px;
+  right: -48px;
+  background: hsl(240, 100%, 12%, 0.10);
+}
+
+/* =========================================================
+   LAYOUT PRINCIPAL
+   ========================================================= */
+.page-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 28rem;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+/* =========================================================
+   TOGGLE DE IDIOMA
+   ========================================================= */
+.locale-toggle-wrap {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 8px;
+  margin-bottom: 24px;
+}
+
+.locale-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border-radius: var(--radius-pill);
+  border: 1px solid hsl(240, 20%, 80%);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 1px 4px rgba(0, 0, 43, 0.06);
+}
+
+.locale-toggle__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(0, 0, 43, 0.7);
+  transition: color 0.2s var(--ease, ease), background 0.2s var(--ease, ease);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.locale-toggle__btn:hover {
+  color: var(--color-text);
+}
+
+.locale-toggle__btn--active {
+  background: var(--navy-base);
+  color: var(--color-text-inverse);
+}
+
+.locale-toggle__btn--active:hover {
+  color: var(--color-text-inverse);
+}
+
+/* =========================================================
+   CARD DE PERFIL
+   ========================================================= */
+.profile-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid hsl(240, 20%, 80%);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 18px 60px -30px hsla(240, 100%, 8%, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: var(--space-8);
+  text-align: center;
+  margin-bottom: 32px;
+
+  animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Blob interno no topo do card */
+.profile-card__blob {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 120px;
+  border-radius: 50%;
+  background: hsl(240, 100%, 14%, 0.07);
+  filter: blur(32px);
+  pointer-events: none;
+}
+
+/* Avatar */
+.avatar-wrap {
+  display: inline-block;
+  margin-bottom: 20px;
+  animation: fade-in-up 0.6s 0.05s cubic-bezier(0.16, 1, 0.3, 1) both,
+             float 3s 0.6s ease-in-out infinite;
+}
+
+.avatar {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  border: 4px solid var(--navy-base);
+  object-fit: cover;
+  display: block;
+}
+
+/* Nome */
+.profile-name {
+  font-size: clamp(1.85rem, 8vw, 2.65rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  animation: fade-in-up 0.6s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Bio */
+.profile-bio {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  margin-bottom: 20px;
+  animation: fade-in-up 0.6s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Tags */
+.profile-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  animation: fade-in-up 0.6s 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.profile-tag {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid hsl(240, 20%, 80%);
+  background: var(--color-bg);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* =========================================================
+   SEÇÃO DE LINKS
+   ========================================================= */
+.links-section {
+  margin-bottom: 32px;
+}
+
+.links-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+  animation: fade-in-up 0.6s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.links-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  animation: fade-in-up 0.6s 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* =========================================================
+   BOTÕES DE LINK
+   ========================================================= */
+.link-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid hsl(240, 20%, 80%);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 10px -4px rgba(0, 0, 43, 0.12);
+  text-decoration: none;
+  color: var(--color-text);
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.link-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--navy-base);
+  background: var(--navy-base);
+  color: var(--color-text-inverse);
+  box-shadow: 0 8px 24px -8px hsla(240, 100%, 8%, 0.4);
+}
+
+.link-btn__icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  transition: background 0.25s ease;
+}
+
+.link-btn:hover .link-btn__icon-wrap {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.link-btn__icon-wrap svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--color-primary);
+  transition: stroke 0.25s ease;
+}
+
+.link-btn:hover .link-btn__icon-wrap svg {
+  stroke: #ffffff;
+}
+
+.link-btn__label {
+  flex: 1;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.link-btn__arrow {
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.link-btn:hover .link-btn__arrow {
+  opacity: 0.9;
+  transform: translate(2px, -2px);
+}
+
+.link-btn__arrow svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Delays escalonados nos links */
+.link-btn:nth-child(1) { animation: fade-in-up 0.6s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.link-btn:nth-child(2) { animation: fade-in-up 0.6s 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.link-btn:nth-child(3) { animation: fade-in-up 0.6s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.link-btn:nth-child(4) { animation: fade-in-up 0.6s 0.55s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.link-btn:nth-child(5) { animation: fade-in-up 0.6s 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  padding: 16px 0 8px;
+  animation: fade-in-up 0.6s 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}

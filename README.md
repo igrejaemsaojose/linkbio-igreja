@@ -1,67 +1,64 @@
 # bio-cristian
 
-Link da bio pessoal do Cristian Dornelles, focado em acesso rápido para canais principais (serviços, WhatsApp, LinkedIn, Instagram, GitHub e biblioteca de conteúdo).
+Link da bio pessoal do Cristian Dornelles, focado em acesso rapido para canais principais (servicos, WhatsApp, LinkedIn, Instagram e GitHub).
 
 ## Stack
 
-| Camada | Tecnologia |
+| Camada       | Tecnologia                             |
 |---|---|
-| Build / Dev server | Vite 5 + plugin SWC (`@vitejs/plugin-react-swc`) |
-| Linguagem | TypeScript 5 |
-| UI | React 18 + React Router v6 |
-| Design system | shadcn/ui (Radix) + Tailwind CSS 3 + `tailwindcss-animate` |
-| Estado/infra | TanStack Query 5 |
-| Ícones | lucide-react |
-| Testes | Vitest 3 + Testing Library + jsdom |
-| Package manager | npm |
+| Linguagem    | HTML5 semantico                        |
+| Estilo       | CSS3 puro com custom properties        |
+| Scripts      | JavaScript vanilla (ES6+)              |
+| Dev server   | `npx serve . --listen 3000`            |
+| Build        | Sem build step                         |
+| Deploy       | Vercel sem build                       |
 
 ## Como rodar
 
-Requisito: Node.js 18+ e npm.
+Requisito: Node.js 18+.
 
 ```sh
-npm install
 npm run dev
 ```
 
-Servidor local padrão: `http://localhost:8080`.
+Servidor local: `http://localhost:3000`.
 
 ## Scripts
 
-| Script | O que faz |
+| Script      | O que faz                     |
 |---|---|
-| `npm run dev` | Dev server com HMR |
-| `npm run build` | Build de produção |
-| `npm run build:dev` | Build em modo development |
-| `npm run preview` | Preview local do build |
-| `npm run lint` | ESLint no projeto |
-| `npm run test` | Vitest (single run) |
-| `npm run test:watch` | Vitest em watch mode |
+| `npm run dev` | Dev server na porta 3000    |
 
-## Estrutura relevante
+## Estrutura
 
-```text
+```
 bio-cristian/
-├── public/                  # favicon e assets estáticos
-├── src/
-│   ├── pages/Index.tsx      # composição da página principal
-│   ├── components/          # Header, LinkButton, HighlightCard, Footer e UI base
-│   ├── config/              # perfil, links, destaque e conteúdo de rodapé
-│   ├── assets/avatar.png    # avatar principal
-│   └── test/                # setup e testes
-├── docs/                    # arquitetura, instruções, histórico e design-system
-├── CLAUDE.md                # contexto operacional para agente
-├── AGENTS.md                # equivalente ao CLAUDE.md
-└── index.html               # metas e favicons
+├── index.html            # pagina unica
+├── css/
+│   ├── reset.css         # reset de estilos
+│   ├── tokens.css        # CSS custom properties (design tokens)
+│   └── styles.css        # estilos + animacoes
+├── js/
+│   ├── i18n.js           # sistema de traducao leve (PT/EN)
+│   └── main.js           # inicializacao e logica de pagina
+├── translations/
+│   ├── pt.js             # dicionario em portugues
+│   └── en.js             # dicionario em ingles
+├── assets/
+│   └── images/
+│       └── avatar.png    # foto de perfil
+├── public/               # favicons e webmanifest
+├── vercel.json           # deploy sem build
+├── package.json          # script dev
+├── CLAUDE.md             # contexto para agentes de IA
+├── AGENTS.md             # equivalente ao CLAUDE.md
+└── docs/                 # arquitetura, historico e design-system
 ```
 
-## Documentação
+## Documentacao
 
-A documentação viva do projeto está em [`docs/`](./docs/):
-
-- [`docs/arquitetura/`](./docs/arquitetura/) — snapshot técnico e decisões de arquitetura.
-- [`docs/instrucoes/`](./docs/instrucoes/) — regras de trabalho e plano por fases.
-- [`docs/historico/`](./docs/historico/) — registro de alterações relevantes.
+- [`docs/arquitetura/`](./docs/arquitetura/) — snapshot tecnico e decisoes de arquitetura.
+- [`docs/historico/`](./docs/historico/) — registro de alteracoes relevantes.
 - [`docs/design-system/`](./docs/design-system/) — identidade visual e assets.
 
 ## Regra de ouro

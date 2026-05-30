@@ -1,43 +1,248 @@
-<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Link Bio - Cristian Dornelles</title>
-    <meta name="description" content="Central de links e contatos de negócios. Soluções em automação e inteligência artificial.">
-    <meta name="author" content="Cristian Dornelles" />
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ajudo empresas a transformar operação e vendas com agentes de IA, automação e estratégia digital." />
+  <title>Cristian Dornelles</title>
 
-    
-    
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/vvZyz8A2amfwz21qlEu4PmHd6262/social-images/social-1769358641684-Foto Cristian.png">
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Cristian Dornelles" />
+  <meta property="og:description" content="Ajudo empresas a transformar operação e vendas com agentes de IA, automação e estratégia digital." />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@seu_usuario" />
-    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/vvZyz8A2amfwz21qlEu4PmHd6262/social-images/social-1769358641684-Foto Cristian.png">
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg" />
+  <link rel="icon" type="image/x-icon"  href="public/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png" />
+  <link rel="apple-touch-icon"    href="public/apple-touch-icon.png" />
+  <link rel="manifest"            href="public/site.webmanifest" />
 
-    <link rel="preload" as="image" href="/apple-touch-icon.png" type="image/png" fetchpriority="high" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    
-  
-  
-  
-  <meta property="og:title" content="Link Bio - Cristian Dornelles">
-  <meta name="twitter:title" content="Link Bio - Cristian Dornelles">
-  <meta property="og:description" content="Central de links e contatos de negócios. Soluções em automação e inteligência artificial.">
-  <meta name="twitter:description" content="Central de links e contatos de negócios. Soluções em automação e inteligência artificial.">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
+  <!-- Tipografia -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Traduções (carregadas antes do i18n.js) -->
+  <script src="translations/pt.js"></script>
+  <script src="translations/en.js"></script>
 </head>
+<body>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <!-- Blobs decorativos de fundo -->
+  <div class="blob blob--top-left" aria-hidden="true"></div>
+  <div class="blob blob--bottom-right" aria-hidden="true"></div>
+
+  <div class="page-wrapper">
+
+    <!-- Toggle de idioma -->
+    <div class="locale-toggle-wrap">
+      <div class="locale-toggle" role="group" aria-label="Selecionar idioma">
+        <button
+          class="locale-toggle__btn"
+          data-locale-btn="pt"
+          aria-pressed="true"
+          type="button"
+        >PT</button>
+        <button
+          class="locale-toggle__btn"
+          data-locale-btn="en"
+          aria-pressed="false"
+          type="button"
+        >EN</button>
+      </div>
+    </div>
+
+    <!-- Card de perfil -->
+    <section class="profile-card" aria-label="Perfil">
+      <div class="profile-card__blob" aria-hidden="true"></div>
+
+      <div class="avatar-wrap">
+        <img
+          src="assets/images/avatar.png"
+          alt="Cristian Dornelles"
+          class="avatar"
+          width="128"
+          height="128"
+          loading="eager"
+          fetchpriority="high"
+          decoding="sync"
+        />
+      </div>
+
+      <h1 class="profile-name">Cristian Dornelles</h1>
+
+      <p class="profile-bio" data-i18n="profile.bio">
+        Ajudo empresas a crescer com tráfego pago, sites que convertem e automações com IA.
+      </p>
+
+      <div class="profile-tags" aria-label="Especialidades">
+        <span class="profile-tag" data-i18n="profile.tag1">Growth Marketing</span>
+        <span class="profile-tag" data-i18n="profile.tag2">Desenvolvimento</span>
+        <span class="profile-tag" data-i18n="profile.tag3">Inteligência Artificial</span>
+      </div>
+    </section>
+
+    <!-- Seção de links -->
+    <section class="links-section" aria-label="Links">
+      <p class="links-eyebrow" data-i18n="links.eyebrow">Acessos Rápidos</p>
+      <h2 class="links-title" data-i18n="links.title">Meus Links</h2>
+
+      <ul class="links-list">
+
+        <!-- Serviços -->
+        <li>
+          <a
+            href="https://lp.crdornelles.com"
+            id="link-servicos"
+            class="link-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Serviços"
+          >
+            <span class="link-btn__icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </span>
+            <span class="link-btn__label" data-i18n="link.servicos">Serviços</span>
+            <span class="link-btn__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"/>
+                <polyline points="7 7 17 7 17 17"/>
+              </svg>
+            </span>
+          </a>
+        </li>
+
+        <!-- WhatsApp -->
+        <li>
+          <a
+            href="https://wa.me/5555999062078?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20seus%20servi%C3%A7os."
+            id="link-whatsapp"
+            class="link-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+          >
+            <span class="link-btn__icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </span>
+            <span class="link-btn__label" data-i18n="link.whatsapp">WhatsApp</span>
+            <span class="link-btn__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"/>
+                <polyline points="7 7 17 7 17 17"/>
+              </svg>
+            </span>
+          </a>
+        </li>
+
+        <!-- LinkedIn -->
+        <li>
+          <a
+            href="https://www.linkedin.com/in/cristian-dornelles-3b1019190/"
+            id="link-linkedin"
+            class="link-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <span class="link-btn__icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect x="2" y="9" width="4" height="12"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </span>
+            <span class="link-btn__label" data-i18n="link.linkedin">LinkedIn</span>
+            <span class="link-btn__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"/>
+                <polyline points="7 7 17 7 17 17"/>
+              </svg>
+            </span>
+          </a>
+        </li>
+
+        <!-- Instagram -->
+        <li>
+          <a
+            href="https://www.instagram.com/cr.dornelles"
+            id="link-instagram"
+            class="link-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <span class="link-btn__icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </span>
+            <span class="link-btn__label" data-i18n="link.instagram">Instagram</span>
+            <span class="link-btn__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"/>
+                <polyline points="7 7 17 7 17 17"/>
+              </svg>
+            </span>
+          </a>
+        </li>
+
+        <!-- GitHub -->
+        <li>
+          <a
+            href="https://github.com/cr-dornelles"
+            id="link-github"
+            class="link-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <span class="link-btn__icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+            </span>
+            <span class="link-btn__label" data-i18n="link.github">GitHub</span>
+            <span class="link-btn__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"/>
+                <polyline points="7 7 17 7 17 17"/>
+              </svg>
+            </span>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <p data-i18n="footer.copy">© 2026 Cristian Dornelles. Todos os direitos reservados.</p>
+    </footer>
+
+  </div><!-- /.page-wrapper -->
+
+  <!-- Scripts -->
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
 </html>

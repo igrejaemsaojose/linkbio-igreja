@@ -22,154 +22,122 @@ Regra central desta familia de projetos:
 
 - **Fonte principal (display + body):** `Sora` (sans-serif, Google Fonts).
 - **Pesos em uso:** 300, 400, 500, 600, 700, 800.
-- **Aplicacao:** carregada globalmente em `body` via `src/index.css`.
+- **Aplicacao:** carregada globalmente via `<link>` no `index.html`; aplicada no `html` via `--font-body` em `css/tokens.css`.
 - **Hierarquia em uso no app:**
-  - `text-xl font-bold` para titulos principais mobile.
-  - `text-sm` e `text-xs` para conteudo e metadados.
-  - `font-mono` para blocos de prompt/codigo.
+  - Nome/H1: `clamp(1.85rem, 8vw, 2.65rem)`, `font-weight: 800`, `letter-spacing: -0.02em`.
+  - Tagline: `1rem`, `font-weight: 600`.
+  - Bio: `0.875rem`, cor muted.
+  - Eyebrow: `0.75rem`, `font-weight: 600`, `letter-spacing: 0.18em`, `text-transform: uppercase`.
+  - Label dos links: `0.9375rem`, `font-weight: 600`.
 
-Hierarquia de referencia para evolucao visual:
-- H1: `clamp(2.25rem, 5.5vw, 4.5rem)`, `font-weight: 800`, `letter-spacing: -0.02em`, `line-height: 1.1`.
-- H2: `clamp(1.75rem, 3.4vw, 2.75rem)`, `font-weight: 700`.
-- H3: `1.25rem`, `font-weight: 600`.
-- Eyebrow: `0.75rem`, `font-weight: 600`, `letter-spacing: 0.18em`, `text-transform: uppercase`, `opacity: 0.7`.
-- Body: `1rem`; prose: `1.0625rem`, `line-height: 1.65`, `opacity: 0.8`.
+## 3. Paleta de cores (CSS custom properties)
 
-## 3. Paleta de cores
+Tokens definidos em `css/tokens.css`:
 
-### 3.1 Cores-base da ID visual pessoal
+```css
+:root {
+  --color-bg:            #F4F4F9;
+  --color-surface:       #FFFFFF;
+  --color-surface-alt:   #EAEAF2;
+  --color-primary:       #00002B;
+  --color-primary-hover: #000014;
+  --color-text:          #00002B;
+  --color-text-muted:    rgba(0, 0, 43, 0.6);
+  --color-text-inverse:  #F4F4F9;
+  --color-border:        rgba(0, 0, 42, 0.08);
+  --color-border-strong: rgba(0, 0, 42, 0.15);
 
-| Nome | HEX | Uso |
+  --navy-dark:    hsl(240, 100%, 6%);
+  --navy-base:    hsl(240, 100%, 8%);
+  --navy-mid:     hsl(240, 100%, 10%);
+  --navy-light:   hsl(240, 100%, 12%);
+  --navy-lighter: hsl(240, 100%, 14%);
+}
+```
+
+| Nome              | Valor                      | Uso                                     |
 |---|---|---|
-| Navy profundo | `#00002B` | cor primaria, texto principal, fundo escuro, focus ring |
-| Off-white | `#F4F4F9` | fundo geral, texto inverso sobre navy |
-| Preto | `#000000` | contraste maximo |
-| Navy hover | `#000014` | hover do botao primario |
-| Alt surface | `#EAEAF2` | fundo de secao alternativa |
-
-### 3.2 Tokens semanticos (shadcn/ui, HSL em `src/index.css`)
-
-| Token | Claro (`:root`) | Semantica |
-|---|---|---|
-| `background` | `hsl(240 29% 97%)` | fundo geral (off-white) |
-| `foreground` | `hsl(240 100% 8%)` | texto principal (navy profundo) |
-| `card` | `hsl(0 0% 100%)` | fundo de card |
-| `card-foreground` | `hsl(240 100% 8%)` | texto em card |
-| `primary` | `hsl(240 100% 15%)` | acoes principais |
-| `primary-foreground` | `hsl(240 29% 97%)` | texto sobre primary |
-| `secondary` | `hsl(240 20% 88%)` | acoes secundarias |
-| `muted` | `hsl(240 15% 93%)` | fundos discretos |
-| `muted-foreground` | `hsl(240 20% 35%)` | textos discretos |
-| `accent` | `hsl(240 100% 8%)` | destaque |
-| `accent-foreground` | `hsl(0 0% 100%)` | texto sobre accent |
-| `destructive` | `hsl(0 84% 60%)` | erro/remocao |
-| `border` | `hsl(240 20% 80%)` | bordas |
-| `input` | `hsl(240 15% 90%)` | fundo de inputs |
-| `ring` | `hsl(240 100% 8%)` | focus ring |
-
-### 3.3 Escala navy
-
-| Token | Valor | Uso |
-|---|---|---|
-| `--navy-dark` | `hsl(240 100% 6%)` | pontos mais escuros |
-| `--navy-base` | `hsl(240 100% 8%)` | navy base |
-| `--navy-mid` | `hsl(240 100% 10%)` | apoio de contraste |
-| `--navy-light` | `hsl(240 100% 12%)` | apoio de contraste |
-| `--navy-lighter` | `hsl(240 100% 14%)` | apoio de contraste |
-| `--silver` | `hsl(240 20% 93%)` | acento claro |
-
-### 3.4 Gradientes em uso
-
-- Background global: gradiente vertical de branco para off-white navy.
-- Background radial de detalhe: `radial-gradient(ellipse at center, white 0%, hsl(220 10% 95%) 50%, hsl(220 8% 90%) 100%)`.
-- Botao primario de destaque: `bg-gradient-to-r from-accent to-primary`.
+| `--color-bg`      | `#F4F4F9`                  | fundo geral, chips de tag               |
+| `--color-surface` | `#FFFFFF`                  | superficie de cards e botoes de link    |
+| `--color-primary` | `#00002B`                  | texto principal, borda do avatar        |
+| `--color-text-muted` | `rgba(0,0,43,0.6)`      | bio, footer, eyebrow                    |
+| `--navy-base`     | `hsl(240, 100%, 8%)`       | fundo do segmento ativo do toggle, hover dos botoes |
+| `--navy-light`    | `hsl(240, 100%, 12%)`      | cor da tagline                          |
 
 ## 4. Border radius
 
-Escala padrao:
-- `6px`, `12px`, `24px` (referencia de design)
-- `--radius: 0.75rem` no app, com mapeamento Tailwind/shadcn
-
-| Escala Tailwind | Formula | Valor |
+| Token          | Valor  | Uso                        |
 |---|---|---|
-| `rounded-sm` | `calc(var(--radius) - 4px)` | 8px |
-| `rounded-md` | `calc(var(--radius) - 2px)` | 10px |
-| `rounded-lg` | `var(--radius)` | 12px |
-| `rounded-full` | — | 9999px |
+| `--radius-sm`  | 6px    | elementos pequenos         |
+| `--radius-md`  | 12px   | botoes de link, icon-wrap  |
+| `--radius-lg`  | 24px   | card de perfil             |
+| `--radius-pill`| 999px  | toggle, tags               |
 
-Padrao de uso:
-- Cards: `rounded-lg`.
-- Badges e botoes pill: `rounded-full`.
-- Cards amplos/hero: referencia `24px` quando aplicavel.
+## 5. Gradientes
 
-## 5. Componentes (UX/UI)
-
-- Base: `shadcn/ui` sobre Radix (`src/components/ui/`).
-- Regra: reutilizar componentes existentes antes de criar novos.
-- Ajustes visuais: preferir variantes com `class-variance-authority`.
-- Container principal mobile-first: `container max-w-md mx-auto`.
-- Espacamento vertical: multiplos de `py-4` e `space-y-3`.
-
-Padroes de botoes:
-- Primario: fundo navy, texto off-white, pill, hover com leve elevacao.
-- Ghost: fundo transparente, borda navy, texto navy.
-- Light: fundo off-white, texto navy.
-
-Padrao de card:
-- Fundo claro, borda suave, radius medio, padding generoso, hover com elevacao sutil.
-
-Padrao de seletor segmentado (`LocaleToggle`):
-- Container: pill (`rounded-full`), borda `hsl(240,20%,80%)`, fundo `bg-white/90`, padding interno `p-1`, leve sombra e `backdrop-blur-sm`.
-- Segmento ativo: fundo navy (`hsl(240,100%,8%)`), texto off-white (`hsl(240,29%,97%)`), peso semibold.
-- Segmento inativo: texto `foreground/70`, hover sobe para `foreground` cheio.
-- Aplicacao: alinhado a direita no topo do `main` (acima do Header).
+- **Fundo global:** `linear-gradient(180deg, #ffffff 0%, #F4F4F9 100%)`, `background-attachment: fixed`.
+- **Blobs decorativos:** posicao fixa, `filter: blur(80px)`, fundo navy com opacidade 10%.
 
 ## 6. Animacoes
 
-Definidas em `src/index.css` e usadas como classes `animate-*`:
+Definidas em `css/styles.css` com `@keyframes`:
 
-| Classe | Duracao | Uso |
+| Animacao      | Duracao  | Uso                                      |
 |---|---|---|
-| `animate-fade-in-up` | 0.6s | entrada de secoes |
-| `animate-slide-in-right` | 0.6s | entrada lateral |
-| `animate-float` | 3s loop | elemento decorativo |
-| `animate-glow-pulse` | 2s loop | destaque |
-| `animate-shimmer` | 2s loop | loading |
-| `animate-accordion-down` / `-up` | 0.2s | accordion Radix |
+| `fade-in-up`  | 0.6s     | entrada escalonada de todos os elementos |
+| `float`       | 3s loop  | avatar (translateY 0 → -8px → 0)         |
+| `glow-pulse`  | 2s loop  | anel do avatar (box-shadow navy pulsante) |
 
 Curva recomendada: `cubic-bezier(0.16, 1, 0.3, 1)`.
 
-## 7. Assets (marca pessoal)
+Delays escalonados aplicados nos elementos com `animation-delay`:
+- avatar: 0.05s, nome: 0.10s, tagline: 0.15s, bio: 0.20s, tags: 0.25s
+- eyebrow: 0.30s, titulo: 0.35s, links: 0.40s–0.60s, footer: 0.65s
 
-Organizacao dos assets em `docs/design-system/`:
+## 7. Componentes
 
-### 7.1 Logos — `docs/design-system/logos/`
+### Toggle de idioma
 
-- Usar **somente** logos da marca pessoal do Cristian.
-- Manter variacoes para fundo claro e fundo escuro (`logo-dark.*` e `logo-light.*`, quando aplicavel).
-- Regra de uso: escolher pelo contraste com o fundo.
+- Container: pill, borda `hsl(240,20%,80%)`, fundo `rgba(255,255,255,0.9)`, `backdrop-filter: blur(8px)`, sombra sutil.
+- Segmento ativo: fundo `--navy-base`, texto `--color-text-inverse`, `font-weight: 600`.
+- Segmento inativo: texto `rgba(0,0,43,0.7)`, sem fundo.
+- Posicao: alinhado a direita no topo da pagina.
 
-### 7.2 Favicon — `docs/design-system/favicon/`
+### Card de perfil
 
-- Usar favicon da marca pessoal do Cristian.
-- Se a base for foto pessoal, exportar versoes com transparencia correta e area de seguranca para tamanhos pequenos.
-- Manter versoes comuns: `favicon.svg`, `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png`.
+- `border-radius: 24px`, borda `hsl(240,20%,80%)`, fundo `rgba(255,255,255,0.9)`, `backdrop-filter: blur(12px)`.
+- Sombra: `0 18px 60px -30px hsla(240,100%,8%,0.45)`.
+- Padding: 32px, texto centralizado.
+- Blob interno decorativo no topo.
 
-### 7.3 Imagens — `docs/design-system/` e `public/`
+### Avatar
 
-- Imagens institucionais e de perfil devem ser da marca pessoal.
-- Nao usar logos ou fotos da Magnus nos projetos pessoais.
+- 128x128px, circular, borda 4px navy.
+- Anel: `outline: 4px solid rgba(0,0,43,0.12)`, `outline-offset: 4px`.
+- Animacoes: `float` + `glow-pulse`.
 
-### 7.4 Relacao com `public/`
+### Botao de link
 
-Quando um asset for promovido para o app:
-- copiar para `public/` (ou `src/assets/`, conforme estrategia do projeto),
-- atualizar referencias no app,
-- registrar no historico.
+- `border-radius: 16px`, borda `hsl(240,20%,80%)`, fundo `rgba(255,255,255,0.9)`.
+- Layout flex: icon-wrap (40x40px, radius 12px, fundo `--color-bg`) + label (flex: 1, semibold) + seta.
+- Hover: `translateY(-2px)`, borda e fundo navy, texto off-white.
 
-## 8. Referencias cruzadas
+## 8. Assets (marca pessoal)
 
-- Tokens: `src/index.css` e `tailwind.config.ts`.
-- Tipografia: `src/index.css` e `index.html`.
-- Componentes UI: `src/components/ui/` e `src/components/`.
+### 8.1 Avatar
+- `assets/images/avatar.png` — foto de perfil do Cristian.
+
+### 8.2 Favicon — `public/`
+- `favicon.svg`, `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png`, `site.webmanifest`.
+
+### 8.3 Icones SVG
+- Todos inline no HTML, `viewBox="0 0 24 24"`, `stroke="currentColor"`, `fill="none"`, `stroke-width="1.5"`.
+- Icones em uso: Globe (Servicos), MessageCircle (WhatsApp), Linkedin, Instagram, Github, ArrowUpRight (seta).
+
+## 9. Referencias cruzadas
+
+- Tokens: `css/tokens.css`.
+- Estilos e animacoes: `css/styles.css`.
+- Tipografia: importada no `<head>` do `index.html`.
 - Guia de trabalho: `AGENTS.md` e `CLAUDE.md`.
+- Arquitetura: `docs/arquitetura/arquitetura.md`.

@@ -1,0 +1,35 @@
+/* tokens.css — bio-cristian — ID Visual Pessoal Cristian */
+:root {
+  /* Cores semânticas */
+  --color-bg:            #F4F4F9;
+  --color-surface:       #FFFFFF;
+  --color-surface-alt:   #EAEAF2;
+  --color-primary:       #00002B;
+  --color-primary-hover: #000014;
+  --color-text:          #00002B;
+  --color-text-muted:    rgba(0, 0, 43, 0.6);
+  --color-text-inverse:  #F4F4F9;
+  --color-border:        rgba(0, 0, 42, 0.08);
+  --color-border-strong: rgba(0, 0, 42, 0.15);
+
+  /* Escala navy */
+  --navy-dark:    hsl(240, 100%, 6%);
+  --navy-base:    hsl(240, 100%, 8%);
+  --navy-mid:     hsl(240, 100%, 10%);
+  --navy-light:   hsl(240, 100%, 12%);
+  --navy-lighter: hsl(240, 100%, 14%);
+
+  /* Tipografia */
+  --font-body: 'Sora', system-ui, -apple-system, sans-serif;
+
+  /* Border radius */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   24px;
+  --radius-pill: 999px;
+
+  /* Espaçamento */
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+}
