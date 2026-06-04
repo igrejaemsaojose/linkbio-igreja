@@ -1,26 +1,91 @@
-/* reset.css — bio-cristian */
+/*
+ * ============================================================
+ * reset.css — bio-cristian
+ * ============================================================
+ * FUNÇÃO DESTE ARQUIVO:
+ * "Zera" os estilos padrão que cada navegador aplica
+ * automaticamente aos elementos HTML. Sem isso, Chrome,
+ * Firefox, Safari e Edge exibem margens, tamanhos e
+ * comportamentos diferentes entre si, causando inconsistências
+ * visuais.
+ *
+ * É SEMPRE o primeiro CSS carregado, antes dos tokens e dos
+ * estilos da aplicação, para que as outras regras partam
+ * de uma base consistente e previsível.
+ * ============================================================
+ */
+
+/*
+ * Box-sizing universal
+ * Por padrão, o CSS calcula width e height sem incluir o
+ * padding e a border. Isso é contra-intuitivo:
+ *   Ex.: width:200px + padding:20px = elemento de 240px
+ *
+ * border-box muda esse comportamento: padding e border já
+ * estão INCLUÍDOS no width/height declarado.
+ *   Ex.: width:200px com padding:20px = elemento de 200px
+ *        (o conteúdo interno fica com 160px)
+ *
+ * O seletor * aplica a TODOS os elementos.
+ * ::before e ::after são pseudo-elementos (conteúdo gerado
+ * pelo CSS como decorações) — também precisam do mesmo ajuste.
+ */
 *, *::before, *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  margin: 0;   /* Remove margem padrão de todos os elementos */
+  padding: 0;  /* Remove padding padrão de todos os elementos */
 }
 
+/*
+ * Previne que o iOS/Safari aumente automaticamente o tamanho
+ * da fonte ao girar o dispositivo para paisagem.
+ * -webkit- = prefixo para navegadores baseados em WebKit (Safari).
+ * text-size-adjust = versão sem prefixo (padrão W3C).
+ * 100% = mantém o tamanho de fonte exatamente como definido.
+ */
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 
+/*
+ * Melhorias de renderização de texto:
+ * - line-height: 1.5 → 1,5 × o tamanho da fonte. É um valor
+ *   que garante boa legibilidade por padrão (sem unidade para
+ *   ser relativo ao tamanho da fonte de cada elemento filho).
+ * - antialiased → suaviza as fontes renderizando os pixels de
+ *   borda mais suavemente. Resulta em texto mais fino e nítido,
+ *   especialmente em fundos escuros.
+ *   -webkit- = Chrome/Safari; -moz-osx- = Firefox no macOS.
+ */
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/*
+ * Imagens e SVGs:
+ * - display:block → remove o espaço em branco que aparece
+ *   abaixo de imagens quando elas são inline (comportamento
+ *   padrão). Evita gaps indesejados em layouts.
+ * - max-width:100% → impede que imagens transbordem o
+ *   contêiner pai em telas menores (responsividade básica).
+ */
 img, svg {
   display: block;
   max-width: 100%;
 }
 
+/*
+ * Botões (<button>):
+ * - cursor:pointer → mostra a "mãozinha" ao passar o mouse,
+ *   indicando elemento clicável.
+ * - border:none → remove a borda padrão do sistema operacional.
+ * - background:none → remove o fundo cinza padrão.
+ * - font:inherit → botões não herdam a fonte do body por padrão!
+ *   Esta regra força a herança, garantindo tipografia consistente.
+ */
 button {
   cursor: pointer;
   border: none;
@@ -28,11 +93,26 @@ button {
   font: inherit;
 }
 
+/*
+ * Links (<a>):
+ * - color:inherit → remove a cor azul padrão dos links,
+ *   fazendo-os herdar a cor do elemento pai.
+ * - text-decoration:none → remove o sublinhado padrão.
+ * Os estilos de cor e decoração serão definidos caso a caso
+ * no styles.css conforme o contexto visual exige.
+ */
 a {
   color: inherit;
   text-decoration: none;
 }
 
+/*
+ * Listas (<ul> e <ol>):
+ * - list-style:none → remove os marcadores padrão (• para ul,
+ *   1. 2. 3. para ol) que aparecem automaticamente.
+ * Quando precisar de marcadores, serão adicionados
+ * explicitamente via CSS.
+ */
 ul, ol {
   list-style: none;
 }

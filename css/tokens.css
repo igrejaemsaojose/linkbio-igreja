@@ -1,35 +1,114 @@
-/* tokens.css — bio-cristian — ID Visual Pessoal Cristian */
+/*
+ * ============================================================
+ * tokens.css — bio-cristian
+ * ============================================================
+ * FUNÇÃO DESTE ARQUIVO:
+ * Define os "design tokens" do projeto como variáveis CSS
+ * (CSS Custom Properties). Tokens são os valores fundamentais
+ * de design — cores, tipografia, espaçamentos, bordas — que
+ * são usados em todo o styles.css.
+ *
+ * POR QUE USAR VARIÁVEIS?
+ * Em vez de repetir "#00002B" em 30 lugares do CSS, criamos
+ * a variável --color-primary uma vez aqui. Assim, para mudar
+ * a cor principal do site, basta alterar esta linha — e todos
+ * os elementos que a usam são atualizados automaticamente.
+ *
+ * COMO FUNCIONA O :root?
+ * :root é o seletor do elemento <html> com a maior
+ * especificidade. Variáveis declaradas aqui ficam disponíveis
+ * em qualquer elemento da página (são "globais" no CSS).
+ *
+ * SINTAXE DAS VARIÁVEIS:
+ *   Declaração: --nome-da-variavel: valor;
+ *   Uso:        color: var(--nome-da-variavel);
+ * ============================================================
+ */
 :root {
-  /* Cores semânticas */
+
+  /* ── CORES SEMÂNTICAS ──────────────────────────────────────
+   * Cores definidas pelo seu PAPEL no design (não pelo valor).
+   * Isso torna o CSS mais legível: "color: var(--color-text)"
+   * é mais claro que "color: #00002B".
+   */
+
+  /* Cor de fundo geral da página (cinza-lilás muito claro) */
   --color-bg:            #F4F4F9;
+
+  /* Fundo de "superfície" — cards, painéis, elementos flutuantes */
   --color-surface:       #FFFFFF;
+
+  /* Fundo alternativo levemente mais escuro que a superfície */
   --color-surface-alt:   #EAEAF2;
+
+  /* Cor principal da marca: azul-marinho muito escuro, quase preto */
   --color-primary:       #00002B;
+
+  /* Versão mais escura do primário para estados hover (ao passar o mouse) */
   --color-primary-hover: #000014;
+
+  /* Cor padrão de textos — o mesmo tom do primário para consistência */
   --color-text:          #00002B;
+
+  /* Cor de textos secundários, descrições e labels discretos.
+   * rgba(0, 0, 43, 0.6) = o mesmo azul-marinho com 60% de opacidade,
+   * resultando num cinza-azulado suave. */
   --color-text-muted:    rgba(0, 0, 43, 0.6);
+
+  /* Texto sobre fundo escuro (ex: texto branco em botão azul-marinho) */
   --color-text-inverse:  #F4F4F9;
+
+  /* Bordas sutis: 8% de opacidade — quase invisíveis, só dão estrutura */
   --color-border:        rgba(0, 0, 42, 0.08);
+
+  /* Bordas com mais destaque: 15% de opacidade */
   --color-border-strong: rgba(0, 0, 42, 0.15);
 
-  /* Escala navy */
+
+  /* ── ESCALA NAVY (DEGRADÊS) ────────────────────────────────
+   * Série de tons do mesmo azul-marinho variando apenas
+   * pela luminosidade (L% no modelo HSL).
+   *
+   * HSL = Hue (matiz), Saturation (saturação), Lightness (luminosidade):
+   *   hsl(240, 100%, 6%)  → azul-marinho quase preto (mais escuro)
+   *   hsl(240, 100%, 14%) → azul-marinho um pouco menos escuro
+   *
+   * Usados para gradientes, ícones e elementos de destaque.
+   */
   --navy-dark:    hsl(240, 100%, 6%);
   --navy-base:    hsl(240, 100%, 8%);
   --navy-mid:     hsl(240, 100%, 10%);
   --navy-light:   hsl(240, 100%, 12%);
   --navy-lighter: hsl(240, 100%, 14%);
 
-  /* Tipografia */
+
+  /* ── TIPOGRAFIA ────────────────────────────────────────────
+   * Define a família de fontes para todo o site.
+   * A ordem é de fallback: se 'Sora' não carregar (ex.: sem
+   * internet), o navegador usa system-ui (fonte do sistema),
+   * depois -apple-system (fonte da Apple), depois sans-serif
+   * (qualquer fonte sem serifa instalada).
+   */
   --font-body: 'Sora', system-ui, -apple-system, sans-serif;
 
-  /* Border radius */
-  --radius-sm:   6px;
-  --radius-md:   12px;
-  --radius-lg:   24px;
-  --radius-pill: 999px;
 
-  /* Espaçamento */
-  --space-4: 16px;
-  --space-6: 24px;
-  --space-8: 32px;
+  /* ── BORDER RADIUS (ARREDONDAMENTO DE CANTOS) ──────────────
+   * Escala de arredondamentos usados em botões, cards, tags.
+   * sm = pouco arredondado, pill = completamente arredondado.
+   * 999px no pill garante círculo perfeito em qualquer altura.
+   */
+  --radius-sm:   6px;   /* leve arredondamento — badges, inputs */
+  --radius-md:   12px;  /* médio — botões, ícones */
+  --radius-lg:   24px;  /* grande — cards principais */
+  --radius-pill: 999px; /* totalmente arredondado — tags, toggles */
+
+
+  /* ── ESPAÇAMENTOS ──────────────────────────────────────────
+   * Escala de espaçamentos múltiplos de 8px (prática padrão
+   * no design de UI). Usado em padding, margin e gap.
+   * O número no nome = valor em pixels.
+   */
+  --space-4: 16px;  /* 4 × 4px de base = 16px */
+  --space-6: 24px;  /* 6 × 4px de base = 24px */
+  --space-8: 32px;  /* 8 × 4px de base = 32px */
 }

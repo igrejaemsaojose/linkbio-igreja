@@ -1,7 +1,55 @@
 {
+  "//": [
+    "============================================================",
+    "package.json — bio-cristian",
+    "============================================================",
+    "FUNÇÃO DESTE ARQUIVO:",
+    "Manifesto do projeto Node.js/npm. Define o nome do pacote,",
+    "a versão e os scripts de linha de comando disponíveis.",
+    "",
+    "POR QUE EXISTE?",
+    "O npm (Node Package Manager) usa este arquivo para entender",
+    "o projeto: como ele se chama, qual versão está publicada e",
+    "quais atalhos de terminal ('scripts') estão disponíveis.",
+    "",
+    "COMO USAR OS SCRIPTS:",
+    "  npm run dev   →  inicia o servidor local de desenvolvimento",
+    "",
+    "NOTA SOBRE COMENTÁRIOS EM JSON:",
+    "JSON não suporta comentários com // ou /* */.",
+    "A chave '//' é uma convenção amplamente usada na comunidade",
+    "JavaScript para documentar arquivos JSON: o npm a ignora",
+    "completamente, assim como qualquer chave desconhecida.",
+    "============================================================"
+  ],
+
+  "//name": "Nome do pacote npm. Deve ser único se publicado no registry npm. Usado internamente para identificar o projeto.",
   "name": "bio-cristian",
+
+  "//version": "Versão do projeto no formato semântico: MAJOR.MINOR.PATCH. 1.0.0 = primeira versão estável. Atualizada manualmente a cada release significativo.",
   "version": "1.0.0",
+
+  "//scripts": [
+    "Atalhos de terminal definidos aqui são executados com 'npm run <nome>'.",
+    "Permitem padronizar comandos longos e complexos em nomes curtos e memoráveis."
+  ],
   "scripts": {
+    "//dev": [
+      "npm run dev → executa: npx serve . --listen 3000",
+      "",
+      "npx:          executa um pacote npm sem precisar instalá-lo globalmente.",
+      "              Na primeira vez, baixa o pacote 'serve' temporariamente.",
+      "serve .:      inicia um servidor HTTP estático servindo a pasta atual ('.')",
+      "              Como o projeto não tem build step, os arquivos são servidos",
+      "              diretamente: index.html, css/, js/, assets/, etc.",
+      "--listen 3000: define a porta onde o servidor escuta.",
+      "              Após rodar, acesse: http://localhost:3000",
+      "",
+      "Para que serve em desenvolvimento?",
+      "Arquivos abertos diretamente pelo navegador (file://) podem ter",
+      "restrições de segurança (CORS, paths absolutos). Um servidor HTTP",
+      "local simula o ambiente real de produção (Vercel) e evita esses problemas."
+    ],
     "dev": "npx serve . --listen 3000"
   }
 }

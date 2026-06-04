@@ -1,237 +1,380 @@
-/* styles.css — bio-cristian */
+/*
+ * ============================================================
+ * styles.css — bio-cristian
+ * ============================================================
+ * FUNÇÃO DESTE ARQUIVO:
+ * Estilos principais da página bio-cristian. Define a aparência
+ * visual de todos os componentes: animações, layout, toggle de
+ * idioma, card de perfil, lista de links e footer.
+ *
+ * ESTRUTURA DO ARQUIVO (ordem visual de cima para baixo):
+ *  1. Animações (@keyframes)
+ *  2. Base (html, body)
+ *  3. Blobs decorativos de fundo
+ *  4. Layout principal (.page-wrapper)
+ *  5. Toggle de idioma PT/EN
+ *  6. Card de perfil
+ *  7. Seção de links
+ *  8. Botões de link
+ *  9. Footer
+ *
+ * DEPENDÊNCIAS:
+ *  - css/reset.css  → carregado antes no HTML (zera padrões)
+ *  - css/tokens.css → carregado antes no HTML (variáveis CSS)
+ *  Ambos são carregados como <link> separados no index.html.
+ * ============================================================
+ */
+
 
 /* =========================================================
-   ANIMAÇÕES
+   1. ANIMAÇÕES (@keyframes)
+   =========================================================
+   @keyframes define os quadros (frames) de uma animação CSS.
+   Não aplica a animação a nenhum elemento — apenas declara
+   o "roteiro". A animação é aplicada via a propriedade
+   'animation' nos elementos abaixo.
    ========================================================= */
+
+/*
+ * fade-in-up — Entrada de baixo para cima com fade
+ * Faz o elemento começar invisível (opacity:0) e deslocado
+ * 20px abaixo (translateY(20px)), e chegar à posição e
+ * opacidade normais. Usado na maioria dos elementos da página
+ * para criar a sensação de "aparição elegante".
+ */
 @keyframes fade-in-up {
   from {
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 0;            /* invisível no início */
+    transform: translateY(20px); /* 20px abaixo da posição final */
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1;            /* visível no final */
+    transform: translateY(0);    /* posição normal */
   }
 }
 
+/*
+ * float — Levitação suave em loop
+ * Faz o elemento subir 8px e voltar continuamente, criando
+ * o efeito de "flutuar". Aplicado no avatar para dar vida.
+ *
+ * 0% e 100% com o mesmo valor (translateY(0)) garantem que
+ * a animação em loop seja suave sem saltos.
+ */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-8px); }
+  0%, 100% { transform: translateY(0); }   /* posição base */
+  50%       { transform: translateY(-8px); } /* 8px acima no meio */
 }
 
 
 /* =========================================================
-   BASE
+   2. BASE
+   =========================================================
+   Estilos fundamentais aplicados às tags html e body.
    ========================================================= */
+
 html {
+  /* Aplica a fonte Sora (definida como token) em toda a página */
   font-family: var(--font-body);
+  /* Cor de texto padrão — todos os textos herdam isso */
   color: var(--color-text);
 }
 
 body {
+  /* Altura mínima = 100% da viewport (janela visível).
+   * Garante que a página ocupe toda a tela mesmo com pouco conteúdo. */
   min-height: 100vh;
+
+  /* Gradiente sutil de branco (#ffffff) no topo para o
+   * cinza-lilás (#F4F4F9) na base, criando profundidade visual.
+   * background-attachment: fixed mantém o gradiente parado
+   * enquanto o conteúdo rola — cria efeito parallax sutil. */
   background:
     linear-gradient(180deg, #ffffff 0%, #F4F4F9 100%);
   background-attachment: fixed;
+
+  /* position:relative é necessário para que os blobs (z-index:0)
+   * fiquem atrás do conteúdo (z-index:1). */
   position: relative;
+
+  /* Impede scroll horizontal indesejado causado pelos blobs
+   * que ficam parcialmente fora da tela. */
   overflow-x: hidden;
 }
 
+
 /* =========================================================
-   BLOBS DECORATIVOS
+   3. BLOBS DECORATIVOS DE FUNDO
+   =========================================================
+   Grandes círculos desfocados e translúcidos que criam
+   o efeito visual de "iluminação suave" no fundo da página.
+   São puramente decorativos (aria-hidden="true" no HTML).
    ========================================================= */
+
 .blob {
+  /* fixed = fica preso na tela, não rola com o conteúdo */
   position: fixed;
+  /* Arredondamento de 50% = círculo perfeito */
   border-radius: 50%;
+  /* pointer-events:none = cliques passam através do elemento
+   * como se ele não existisse — não interfere na interação */
   pointer-events: none;
+  /* z-index:0 = fica atrás do conteúdo (z-index:1 no .page-wrapper) */
   z-index: 0;
+  /* filter:blur(80px) = desfoca fortemente, transformando o
+   * círculo numa névoa suave de cor */
   filter: blur(80px);
 }
 
+/* Blob no canto superior esquerdo */
 .blob--top-left {
   width: 260px;
   height: 260px;
   top: 96px;
-  left: -40px;
+  left: -40px;   /* -40px = parcialmente fora da tela à esquerda */
+  /* hsl com quarto parâmetro = opacidade 10% — quase transparente */
   background: hsl(240, 100%, 15%, 0.10);
 }
 
+/* Blob no canto inferior direito */
 .blob--bottom-right {
   width: 300px;
   height: 300px;
   bottom: 96px;
-  right: -48px;
+  right: -48px;  /* -48px = parcialmente fora da tela à direita */
   background: hsl(240, 100%, 12%, 0.10);
 }
 
+
 /* =========================================================
-   LAYOUT PRINCIPAL
+   4. LAYOUT PRINCIPAL
+   =========================================================
+   .page-wrapper é o contêiner que envolve TODO o conteúdo
+   visível da página: toggle, card, links e footer.
    ========================================================= */
+
 .page-wrapper {
+  /* z-index:1 coloca o conteúdo na frente dos blobs (z-index:0) */
   position: relative;
   z-index: 1;
+
+  /* max-width:28rem = largura máxima de ~448px. Como a bio é
+   * um "link in bio", é pensada para telas de celular.
+   * margin:0 auto centraliza horizontalmente o contêiner. */
   max-width: 28rem;
   margin: 0 auto;
+
+  /* padding vertical de 32px e horizontal de 20px */
   padding: 32px 20px;
 }
 
+
 /* =========================================================
-   TOGGLE DE IDIOMA
+   5. TOGGLE DE IDIOMA PT/EN
+   =========================================================
+   Grupo de dois botões no canto superior direito da página
+   que permite ao visitante escolher PT ou EN.
    ========================================================= */
+
+/* Contêiner externo que alinha o toggle à direita */
 .locale-toggle-wrap {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-end; /* empurra o filho para a direita */
   padding-top: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 24px;       /* espaço antes do card de perfil */
 }
 
+/* O toggle em si: os dois botões agrupados em linha */
 .locale-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 2px;
-  padding: 4px;
-  border-radius: var(--radius-pill);
-  border: 1px solid hsl(240, 20%, 80%);
-  background: rgba(255, 255, 255, 0.9);
+  gap: 2px;               /* pequeno espaço entre os botões */
+  padding: 4px;           /* padding interno ao redor dos botões */
+  border-radius: var(--radius-pill); /* formato de pílula */
+  border: 1px solid hsl(240, 20%, 80%); /* borda sutil cinza-azulada */
+  background: rgba(255, 255, 255, 0.9); /* branco semitransparente */
+  /* backdrop-filter aplica desfoque ao que está ATRÁS do elemento,
+   * criando o efeito "frosted glass" (vidro fosco). */
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* prefixo para Safari */
   box-shadow: 0 1px 4px rgba(0, 0, 43, 0.06);
 }
 
+/* Cada botão individual (PT ou EN) */
 .locale-toggle__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 4px 12px;
   border-radius: var(--radius-pill);
-  font-size: 0.75rem;
+  font-size: 0.75rem;    /* 12px — texto pequeno e discreto */
   font-weight: 600;
-  color: rgba(0, 0, 43, 0.7);
+  color: rgba(0, 0, 43, 0.7); /* azul-marinho com 70% de opacidade */
+  /* transition define a animação suave ao mudar de estado.
+   * var(--ease, ease) = usa a curva --ease se existir, 'ease' como fallback. */
   transition: color 0.2s var(--ease, ease), background 0.2s var(--ease, ease);
   cursor: pointer;
   background: none;
   border: none;
 }
 
+/* Estado hover: escurece o texto ao passar o mouse */
 .locale-toggle__btn:hover {
   color: var(--color-text);
 }
 
+/* Classe adicionada via JS no botão do idioma ATIVO.
+ * Fundo azul-marinho escuro com texto claro. */
 .locale-toggle__btn--active {
   background: var(--navy-base);
   color: var(--color-text-inverse);
 }
 
+/* No hover do botão ativo, mantém a cor branca (sem mudar) */
 .locale-toggle__btn--active:hover {
   color: var(--color-text-inverse);
 }
 
+
 /* =========================================================
-   CARD DE PERFIL
+   6. CARD DE PERFIL
+   =========================================================
+   O card central da página com avatar, nome, bio e tags.
+   É o elemento mais importante visualmente.
    ========================================================= */
+
 .profile-card {
+  /* overflow:hidden corta o blob interno que extravasa nas bordas */
   position: relative;
   overflow: hidden;
-  border-radius: var(--radius-lg);
+
+  border-radius: var(--radius-lg); /* cantos bastante arredondados */
   border: 1px solid hsl(240, 20%, 80%);
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.9); /* branco semitransparente */
+
+  /* Sombra dramática abaixo do card:
+   * 0 offset-x, 18px offset-y, 60px blur, -30px spread (encolhe),
+   * cor azul-marinho com 45% de opacidade */
   box-shadow: 0 18px 60px -30px hsla(240, 100%, 8%, 0.45);
-  backdrop-filter: blur(12px);
+
+  backdrop-filter: blur(12px);     /* efeito vidro fosco */
   -webkit-backdrop-filter: blur(12px);
-  padding: var(--space-8);
+  padding: var(--space-8);         /* 32px de padding interno */
   text-align: center;
   margin-bottom: 32px;
 
+  /* Animação de entrada: fade-in-up com 0.6s de duração.
+   * cubic-bezier(0.16, 1, 0.3, 1) = curva "spring" suave.
+   * 'both' faz a animação respeitar o estado inicial (opacity:0)
+   * antes de começar. */
   animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Blob interno no topo do card */
+/* Blob decorativo no topo interno do card (névoa suave) */
 .profile-card__blob {
   position: absolute;
-  top: -60px;
+  top: -60px;            /* começa 60px acima do card */
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); /* centraliza horizontalmente */
   width: 200px;
   height: 120px;
   border-radius: 50%;
-  background: hsl(240, 100%, 14%, 0.07);
+  background: hsl(240, 100%, 14%, 0.07); /* muito transparente */
   filter: blur(32px);
-  pointer-events: none;
+  pointer-events: none;  /* não interfere com cliques */
 }
 
-/* Avatar */
+/* Contêiner do avatar: aplica duas animações em sequência.
+ * 1ª: fade-in-up (0.6s, delay 0.05s) — entra na cena.
+ * 2ª: float (3s, delay 0.6s) — inicia a flutuação depois
+ *     que a entrada termina. */
 .avatar-wrap {
   display: inline-block;
   margin-bottom: 20px;
   animation: fade-in-up 0.6s 0.05s cubic-bezier(0.16, 1, 0.3, 1) both,
              float 3s 0.6s ease-in-out infinite;
+  /* 'infinite' = repete a animação indefinidamente */
 }
 
+/* A imagem do avatar em si */
 .avatar {
   width: 128px;
   height: 128px;
-  border-radius: 50%;
-  border: 4px solid var(--navy-base);
+  border-radius: 50%;       /* recorte circular */
+  border: 4px solid var(--navy-base); /* moldura azul-marinho */
+  /* object-fit:cover garante que a imagem preencha o quadrado
+   * sem distorcer — recorta as bordas se necessário */
   object-fit: cover;
   display: block;
 }
 
-/* Nome */
+/* Nome (h1 da página) */
 .profile-name {
+  /* clamp(mínimo, preferencial, máximo) = tamanho responsivo.
+   * Em telas pequenas: pelo menos 1.85rem.
+   * Em telas médias: 8% da largura da viewport (8vw).
+   * Em telas grandes: no máximo 2.65rem. */
   font-size: clamp(1.85rem, 8vw, 2.65rem);
   font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  letter-spacing: -0.02em; /* kerning negativo: letras mais próximas */
+  line-height: 1.1;         /* entrelinhas apertadas para títulos */
   margin-bottom: 16px;
   animation: fade-in-up 0.6s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Bio */
+/* Texto de bio abaixo do nome */
 .profile-bio {
-  font-size: 0.875rem;
+  font-size: 0.875rem; /* 14px */
   color: var(--color-text-muted);
   line-height: 1.65;
   margin-bottom: 20px;
   animation: fade-in-up 0.6s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Tags */
+/* Grupo de tags de especialidades (Growth Marketing, etc.) */
 .profile-tags {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap;        /* quebra para nova linha se não couber */
   justify-content: center;
-  gap: 8px;
+  gap: 8px;               /* espaço entre as tags */
   animation: fade-in-up 0.6s 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Cada tag individual */
 .profile-tag {
   display: inline-block;
   padding: 4px 14px;
   border-radius: var(--radius-pill);
   border: 1px solid hsl(240, 20%, 80%);
   background: var(--color-bg);
-  font-size: 0.75rem;
+  font-size: 0.75rem;  /* 12px */
   font-weight: 600;
   color: var(--color-text);
 }
 
+
 /* =========================================================
-   SEÇÃO DE LINKS
+   7. SEÇÃO DE LINKS
+   =========================================================
+   Seção com o título "Meus Links" e a lista de botões.
    ========================================================= */
+
 .links-section {
   margin-bottom: 32px;
 }
 
+/* Texto "ACESSOS RÁPIDOS" acima do título — subtexto discreto */
 .links-eyebrow {
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.18em; /* espaçamento largo entre letras */
   text-transform: uppercase;
   color: var(--color-text-muted);
   margin-bottom: 4px;
   animation: fade-in-up 0.6s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Título "Meus Links" */
 .links-title {
   font-size: 1.25rem;
   font-weight: 700;
@@ -239,19 +382,25 @@ body {
   animation: fade-in-up 0.6s 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* A lista de links em coluna, com espaço entre cada item */
 .links-list {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  flex-direction: column; /* empilha verticalmente */
+  gap: 12px;              /* 12px entre cada botão */
 }
 
+
 /* =========================================================
-   BOTÕES DE LINK
+   8. BOTÕES DE LINK
+   =========================================================
+   Os cinco botões clicáveis (Serviços, WhatsApp, LinkedIn, etc.)
+   com ícone à esquerda, label no centro e seta à direita.
    ========================================================= */
+
 .link-btn {
   display: flex;
-  align-items: center;
-  gap: 16px;
+  align-items: center; /* alinha ícone, label e seta verticalmente */
+  gap: 16px;           /* espaço entre os três elementos internos */
   padding: 14px 16px;
   border-radius: var(--radius-md);
   border: 1px solid hsl(240, 20%, 80%);
@@ -259,6 +408,10 @@ body {
   box-shadow: 0 2px 10px -4px rgba(0, 0, 43, 0.12);
   text-decoration: none;
   color: var(--color-text);
+
+  /* transition define quais propriedades animam e como:
+   * transform, border-color, background, color e box-shadow
+   * todos com 0.25s de duração. */
   transition:
     transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
     border-color 0.25s ease,
@@ -267,55 +420,65 @@ body {
     box-shadow 0.25s ease;
 }
 
+/* Hover: sobe 2px, muda para fundo azul-marinho com texto branco */
 .link-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px); /* sobe levemente = sensação de elevação */
   border-color: var(--navy-base);
   background: var(--navy-base);
-  color: var(--color-text-inverse);
-  box-shadow: 0 8px 24px -8px hsla(240, 100%, 8%, 0.4);
+  color: var(--color-text-inverse); /* texto fica branco */
+  box-shadow: 0 8px 24px -8px hsla(240, 100%, 8%, 0.4); /* sombra mais forte */
 }
 
+/* Contêiner quadrado do ícone SVG */
 .link-btn__icon-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  min-width: 40px;
+  min-width: 40px;        /* impede que encolha em flex */
   border-radius: var(--radius-md);
-  background: var(--color-bg);
+  background: var(--color-bg); /* fundo cinza claro */
   transition: background 0.25s ease;
 }
 
+/* No hover, o fundo do ícone fica branco translúcido sobre o azul */
 .link-btn:hover .link-btn__icon-wrap {
   background: rgba(255, 255, 255, 0.15);
 }
 
+/* O SVG do ícone: tamanho fixo 18×18px */
 .link-btn__icon-wrap svg {
   width: 18px;
   height: 18px;
-  stroke: var(--color-primary);
+  stroke: var(--color-primary); /* stroke = cor da linha do SVG */
   transition: stroke 0.25s ease;
 }
 
+/* No hover, o ícone fica branco */
 .link-btn:hover .link-btn__icon-wrap svg {
   stroke: #ffffff;
 }
 
+/* O texto do link: flex:1 faz ele ocupar todo o espaço disponível
+ * entre o ícone e a seta, mantendo ambos nas pontas. */
 .link-btn__label {
   flex: 1;
-  font-size: 0.9375rem;
+  font-size: 0.9375rem; /* 15px */
   font-weight: 600;
   text-align: left;
 }
 
+/* A seta diagonal → no canto direito do botão */
 .link-btn__arrow {
   display: flex;
   align-items: center;
-  opacity: 0.5;
+  opacity: 0.5; /* semitransparente no estado normal */
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
+/* No hover, a seta fica mais visível e se move levemente
+ * para a direita e para cima (+2px, -2px), indicando direção. */
 .link-btn:hover .link-btn__arrow {
   opacity: 0.9;
   transform: translate(2px, -2px);
@@ -326,20 +489,37 @@ body {
   height: 16px;
 }
 
-/* Delays escalonados nos links */
-.link-btn:nth-child(1) { animation: fade-in-up 0.6s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+/*
+ * Delays escalonados nas animações de entrada dos botões.
+ * Cada botão aparece 50ms depois do anterior, criando um
+ * efeito cascata de cima para baixo na lista.
+ *
+ * :nth-child(n) → seleciona o n-ésimo filho do pai.
+ * Como os botões são filhos de <li> dentro de .links-list,
+ * o :nth-child se aplica ao <li>, não ao .link-btn diretamente.
+ * Por isso, o animation é aplicado ao .link-btn dentro do <li>.
+ *
+ * Nota: a seleção .link-btn:nth-child(n) aqui funciona porque
+ * os links são filhos diretos de <li> que são filhos de <ul>.
+ */
+.link-btn:nth-child(1) { animation: fade-in-up 0.6s 0.4s  cubic-bezier(0.16, 1, 0.3, 1) both; }
 .link-btn:nth-child(2) { animation: fade-in-up 0.6s 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
-.link-btn:nth-child(3) { animation: fade-in-up 0.6s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.link-btn:nth-child(3) { animation: fade-in-up 0.6s 0.5s  cubic-bezier(0.16, 1, 0.3, 1) both; }
 .link-btn:nth-child(4) { animation: fade-in-up 0.6s 0.55s cubic-bezier(0.16, 1, 0.3, 1) both; }
-.link-btn:nth-child(5) { animation: fade-in-up 0.6s 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.link-btn:nth-child(5) { animation: fade-in-up 0.6s 0.6s  cubic-bezier(0.16, 1, 0.3, 1) both; }
+
 
 /* =========================================================
-   FOOTER
+   9. FOOTER
+   =========================================================
+   Rodapé simples com o texto de copyright.
    ========================================================= */
+
 .site-footer {
   text-align: center;
-  font-size: 0.75rem;
+  font-size: 0.75rem; /* 12px — texto pequeno e discreto */
   color: var(--color-text-muted);
   padding: 16px 0 8px;
+  /* 0.65s de delay → o footer é o último elemento a aparecer */
   animation: fade-in-up 0.6s 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
 }

@@ -1,15 +1,91 @@
 {
+  "//": [
+    "============================================================",
+    "vercel.json — bio-cristian",
+    "============================================================",
+    "FUNÇÃO DESTE ARQUIVO:",
+    "Arquivo de configuração do deploy no Vercel. Instrui a",
+    "plataforma sobre como servir este projeto e quais cabeçalhos",
+    "HTTP de segurança aplicar em todas as respostas.",
+    "",
+    "POR QUE EXISTE?",
+    "Sem este arquivo, o Vercel tentaria detectar o framework",
+    "automaticamente e executar um build. Como bio-cristian é um",
+    "site estático puro (sem React, Next.js, Vite, etc.), seria",
+    "detectado incorretamente. Este arquivo diz explicitamente:",
+    "'não há framework, não há build, sirva a pasta raiz diretamente'.",
+    "",
+    "NOTA SOBRE COMENTÁRIOS EM JSON:",
+    "A chave '//' é ignorada pelo Vercel e serve como documentação.",
+    "============================================================"
+  ],
+
+  "//framework": [
+    "Informa ao Vercel qual framework o projeto usa.",
+    "null = sem framework. O Vercel NÃO executará nenhum build automático.",
+    "Se fosse Next.js, seria: 'nextjs'.",
+    "Se fosse Create React App, seria: 'create-react-app'.",
+    "Como é HTML/CSS/JS puro, null é o valor correto."
+  ],
   "framework": null,
+
+  "//buildCommand": [
+    "Comando de build a ser executado antes do deploy.",
+    "null = nenhum comando de build.",
+    "Um projeto com bundler (Vite, Webpack) teria aqui algo como:",
+    "'npm run build' ou 'vite build'.",
+    "Como este projeto não tem build step, null é o correto."
+  ],
   "buildCommand": null,
+
+  "//outputDirectory": [
+    "Pasta que o Vercel deve servir após o build.",
+    "'.' = a pasta raiz do projeto (o diretório atual).",
+    "Em projetos com build, seria 'dist' ou 'build' (onde o bundler",
+    "gera os arquivos otimizados).",
+    "Aqui é '.' porque os arquivos finais JÁ estão na raiz: index.html,",
+    "css/, js/, assets/, etc."
+  ],
   "outputDirectory": ".",
+
+  "//headers": [
+    "Define cabeçalhos HTTP adicionais enviados pelo servidor em",
+    "cada resposta. Cabeçalhos HTTP são metadados invisíveis que",
+    "o servidor envia junto com cada arquivo, instruindo o navegador",
+    "sobre como tratar o conteúdo.",
+    "",
+    "Esta configuração aplica 4 cabeçalhos de segurança em",
+    "TODAS as rotas do site (source: '/(.*)').",
+    "",
+    "source: '/(.*)'  →  expressão regular que captura qualquer URL.",
+    "                    O (.*) significa 'qualquer coisa após /'.",
+    "                    Assim, os cabeçalhos são enviados para",
+    "                    index.html, css/styles.css, js/main.js, etc."
+  ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "X-XSS-Protection", "value": "1; mode=block" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "//": "X-Content-Type-Options: nosniff — Impede que o navegador adivinhe o tipo de arquivo (MIME sniffing). Sem este cabeçalho, o Chrome poderia interpretar um arquivo .txt como JavaScript se o conteúdo parecesse código. 'nosniff' força o navegador a respeitar o Content-Type declarado. Protege contra ataques de injeção de conteúdo.",
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "//": "X-Frame-Options: DENY — Impede que esta página seja exibida dentro de um <iframe> em outro site. Sem este cabeçalho, um site malicioso poderia carregar bio-cristian invisível dentro de um iframe e enganar o usuário para que clique em elementos sem perceber (ataque 'clickjacking'). DENY = nunca permitir iframe, nem no mesmo domínio.",
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "//": "X-XSS-Protection: 1; mode=block — Ativa o filtro de XSS (Cross-Site Scripting) embutido em navegadores mais antigos. '1' = ativar o filtro. 'mode=block' = se detectar tentativa de XSS, bloquear o carregamento da página inteira (em vez de tentar sanitizar). Navegadores modernos (Chrome 78+) removeram este filtro em favor do CSP, mas o cabeçalho ainda protege navegadores legados.",
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "//": "Referrer-Policy: strict-origin-when-cross-origin — Controla quanta informação é enviada no cabeçalho 'Referer' quando o usuário clica em um link saindo deste site. 'strict-origin-when-cross-origin' = ao clicar em link externo (cross-origin), envia apenas a origem (https://bio.crdornelles.com) sem o caminho completo. Protege a privacidade do visitante: sites externos não sabem exatamente qual página estava sendo visitada.",
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     }
   ]
