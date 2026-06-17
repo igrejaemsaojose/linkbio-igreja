@@ -27,19 +27,11 @@
 
 /* =========================================================
    1. ANIMAÇÕES (@keyframes)
-   =========================================================
-   @keyframes define os quadros (frames) de uma animação CSS.
-   Não aplica a animação a nenhum elemento — apenas declara
-   o "roteiro". A animação é aplicada via a propriedade
-   'animation' nos elementos abaixo.
    ========================================================= */
 
 /*
- * fade-in-up — Entrada de baixo para cima com fade
- * Faz o elemento começar invisível (opacity:0) e deslocado
- * 20px abaixo (translateY(20px)), e chegar à posição e
- * opacidade normais. Usado na maioria dos elementos da página
- * para criar a sensação de "aparição elegante".
+ * fade-in-up — Entrada de baixo para cima com fade.
+ * Usado na maioria dos elementos para a sensação de "aparição elegante".
  */
 @keyframes fade-in-up {
   from {
@@ -53,12 +45,9 @@
 }
 
 /*
- * float — Levitação suave em loop
- * Faz o elemento subir 8px e voltar continuamente, criando
- * o efeito de "flutuar". Aplicado no avatar para dar vida.
- *
- * 0% e 100% com o mesmo valor (translateY(0)) garantem que
- * a animação em loop seja suave sem saltos.
+ * float — Levitação suave em loop.
+ * Aplicado no avatar: sobe 8px e volta continuamente.
+ * 0% e 100% iguais garantem loop sem saltos visíveis.
  */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -68,35 +57,29 @@
 
 /* =========================================================
    2. BASE
-   =========================================================
-   Estilos fundamentais aplicados às tags html e body.
    ========================================================= */
 
 html {
-  /* Aplica a fonte Sora (definida como token) em toda a página */
   font-family: var(--font-body);
-  /* Cor de texto padrão — todos os textos herdam isso */
-  color: var(--color-text);
+  color: var(--color-text);  /* navy #17334E — todos os textos herdam */
 }
 
 body {
-  /* Altura mínima = 100% da viewport (janela visível).
-   * Garante que a página ocupe toda a tela mesmo com pouco conteúdo. */
   min-height: 100vh;
 
-  /* Gradiente suave da marca: branco puro no topo →
-   * azul céu muito claro (--color-bg) na base.
-   * background-attachment: fixed mantém o gradiente parado
-   * enquanto o conteúdo rola — cria efeito parallax sutil. */
-  background: linear-gradient(180deg, #ffffff 0%, var(--color-bg) 100%);
+  /* Gradiente diagonal em 3 stops:
+   * branco puro → azul céu claro (#EDF7FC) → toque quente de amarelo (#FFF8AF).
+   * Cria profundidade visual e incorpora as duas cores de temperatura
+   * opostas da marca (frio azul + quente dourado).
+   * background-attachment: fixed = parallax sutil ao rolar. */
+  background: linear-gradient(165deg,
+    #ffffff                       0%,
+    var(--color-bg)               58%,
+    rgba(255, 248, 175, 0.35)    100%
+  );
   background-attachment: fixed;
 
-  /* position:relative é necessário para que os blobs (z-index:0)
-   * fiquem atrás do conteúdo (z-index:1). */
   position: relative;
-
-  /* Impede scroll horizontal indesejado causado pelos blobs
-   * que ficam parcialmente fora da tela. */
   overflow-x: hidden;
 }
 
@@ -104,64 +87,47 @@ body {
 /* =========================================================
    3. BLOBS DECORATIVOS DE FUNDO
    =========================================================
-   Grandes círculos desfocados e translúcidos que criam
-   o efeito visual de "iluminação suave" em azul céu.
-   São puramente decorativos (aria-hidden="true" no HTML).
+   Dois blobs com cores opostas da marca criam equilíbrio:
+   - Superior esquerdo: azul frio (#0098DA) — cor primária
+   - Inferior direito:  dourado quente (#FEC749) — cor de destaque
    ========================================================= */
 
 .blob {
-  /* fixed = fica preso na tela, não rola com o conteúdo */
   position: fixed;
-  /* Arredondamento de 50% = círculo perfeito */
   border-radius: 50%;
-  /* pointer-events:none = cliques passam através do elemento
-   * como se ele não existisse — não interfere na interação */
   pointer-events: none;
-  /* z-index:0 = fica atrás do conteúdo (z-index:1 no .page-wrapper) */
   z-index: 0;
-  /* filter:blur(80px) = desfoca fortemente, transformando o
-   * círculo numa névoa suave de cor */
   filter: blur(80px);
 }
 
-/* Blob no canto superior esquerdo — azul primário da marca */
+/* Azul primário da marca — frio, superior */
 .blob--top-left {
   width: 260px;
   height: 260px;
   top: 96px;
   left: -40px;
-  background: rgba(0, 152, 218, 0.16);
+  background: rgba(0, 152, 218, 0.18);
 }
 
-/* Blob no canto inferior direito — azul primário da marca */
+/* Dourado da marca — quente, inferior. Equilibra o azul do topo. */
 .blob--bottom-right {
   width: 300px;
   height: 300px;
   bottom: 96px;
   right: -48px;
-  background: rgba(0, 152, 218, 0.11);
+  background: rgba(254, 199, 73, 0.16);
 }
 
 
 /* =========================================================
    4. LAYOUT PRINCIPAL
-   =========================================================
-   .page-wrapper é o contêiner que envolve TODO o conteúdo
-   visível da página: perfil, links e footer.
    ========================================================= */
 
 .page-wrapper {
-  /* z-index:1 coloca o conteúdo na frente dos blobs (z-index:0) */
   position: relative;
-  z-index: 1;
-
-  /* max-width:28rem = largura máxima de ~448px. Como a bio é
-   * um "link in bio", é pensada para telas de celular.
-   * margin:0 auto centraliza horizontalmente o contêiner. */
-  max-width: 28rem;
+  z-index: 1;       /* acima dos blobs */
+  max-width: 28rem; /* ~448px — foco mobile */
   margin: 0 auto;
-
-  /* padding vertical de 48px e horizontal de 20px */
   padding: 48px 20px 32px;
 }
 
@@ -169,62 +135,60 @@ body {
 /* =========================================================
    5. SEÇÃO DE PERFIL
    =========================================================
-   Layout minimalista: avatar flutuante + nome da igreja.
-   Sem card, sem bio, sem tags.
+   Avatar flutuante + nome em Playfair Display azul.
    ========================================================= */
 
 .profile-section {
   text-align: center;
   margin-bottom: 40px;
-  /* Animação de entrada do bloco inteiro */
   animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Contêiner do avatar: aplica duas animações em sequência.
- * 1ª: fade-in-up (0.6s, delay 0.05s) — entra na cena.
- * 2ª: float (3s, delay 0.6s) — inicia a flutuação depois
- *     que a entrada termina. */
+/* Avatar-wrap: entrada + float infinito em sequência */
 .avatar-wrap {
   display: inline-block;
   margin-bottom: 20px;
   animation:
     fade-in-up 0.6s 0.05s cubic-bezier(0.16, 1, 0.3, 1) both,
     float      3s   0.6s  ease-in-out                    infinite;
-  /* 'infinite' = repete a animação indefinidamente */
 }
 
-/* A imagem do avatar em si */
 .avatar {
   width: 128px;
   height: 128px;
   border-radius: 50%;
+
+  /* Borda dourada da marca */
   border: 4px solid var(--color-gold);
-  /* object-fit:contain exibe o logo inteiro sem recortar —
-     adequado para logos e símbolos (ao contrário de fotos de rosto) */
+
+  /* Anel externo suave em dourado — halo que reforça a borda sem poluir */
+  box-shadow: 0 0 0 6px rgba(254, 199, 73, 0.22);
+
+  /* object-fit: contain preserva o logo inteiro sem cortar */
   object-fit: contain;
+
+  /* Fundo azul primário — visível nos cantos transparentes do logo PNG */
   background: var(--color-primary);
+
   display: block;
 }
 
-/* Nome da igreja (h1 da página) */
+/* Nome da igreja: Playfair Display no azul primário da marca.
+ * O contraste entre a serifa elegante e o azul vibrante cria
+ * o destaque visual mais forte da página. */
 .profile-name {
   font-family: var(--font-heading);
-  /* clamp(mínimo, preferencial, máximo) = tamanho responsivo.
-   * Em telas pequenas: pelo menos 1.85rem.
-   * Em telas médias: 8% da largura da viewport (8vw).
-   * Em telas grandes: no máximo 2.65rem. */
   font-size: clamp(1.85rem, 8vw, 2.65rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.1;
+  color: var(--color-primary);  /* #0098DA — azul vibrante da marca */
   animation: fade-in-up 0.6s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 
 /* =========================================================
    6. LISTA DE LINKS
-   =========================================================
-   Lista vertical com os 4 botões de acesso rápido.
    ========================================================= */
 
 .links-list {
@@ -238,7 +202,7 @@ body {
 /* =========================================================
    7. BOTÕES DE LINK
    =========================================================
-   Cada botão tem: ícone à esquerda, label no centro, seta à direita.
+   Estrutura: icon-wrap (40×40) | label (flex:1) | seta
    ========================================================= */
 
 .link-btn {
@@ -247,13 +211,16 @@ body {
   gap: 16px;
   padding: 14px 16px;
   border-radius: var(--radius-md);
+
+  /* Borda azul sutil — reforça a cor primária mesmo em repouso */
   border: 1px solid var(--color-border-strong);
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 2px 10px -4px rgba(7, 41, 58, 0.10);
+  background: rgba(255, 255, 255, 0.92);
+
+  /* Sombra com o navy da marca */
+  box-shadow: 0 2px 10px -4px rgba(23, 51, 78, 0.12);
   text-decoration: none;
   color: var(--color-text);
 
-  /* transition define quais propriedades animam ao mudar de estado */
   transition:
     transform      0.25s cubic-bezier(0.16, 1, 0.3, 1),
     border-color   0.25s ease,
@@ -262,16 +229,16 @@ body {
     box-shadow     0.25s ease;
 }
 
-/* Hover: sobe 2px, fundo navy da marca, texto branco */
+/* Hover: navy profundo da marca — máximo contraste com texto branco */
 .link-btn:hover {
   transform: translateY(-2px);
   border-color: var(--navy-base);
-  background: var(--navy-base);
+  background: var(--navy-base);   /* #17334E */
   color: var(--color-text-inverse);
-  box-shadow: 0 8px 24px -8px hsla(209, 55%, 10%, 0.40);
+  box-shadow: 0 8px 24px -8px rgba(23, 51, 78, 0.45);
 }
 
-/* Contêiner quadrado do ícone SVG */
+/* Contêiner do ícone SVG: fundo com tinte leve do azul primário */
 .link-btn__icon-wrap {
   display: flex;
   align-items: center;
@@ -280,32 +247,32 @@ body {
   height: 40px;
   min-width: 40px;
   border-radius: var(--radius-md);
-  background: var(--color-bg);
+
+  /* Leve tinte do azul primário — mais vivo que o fundo neutro */
+  background: rgba(0, 152, 218, 0.08);
   transition: background 0.25s ease;
 }
 
-/* No hover, o fundo do ícone fica branco translúcido sobre o azul */
+/* No hover do botão, o fundo do ícone fica branco translúcido sobre o navy */
 .link-btn:hover .link-btn__icon-wrap {
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* O SVG do ícone: tamanho fixo 20×20px.
-   Cada ícone usa suas cores de marca diretamente no SVG — sem override aqui. */
+/* Tamanho fixo do SVG — sem override de cor (cada ícone usa suas cores de marca) */
 .link-btn__icon-wrap svg {
   width: 20px;
   height: 20px;
 }
 
-/* Variante para o app Pão de Judá — vinho/marrom oficial da marca */
+/* Pão de Judá: vinho/marrom oficial (#5D2E26) da paleta da marca */
 .link-btn__icon-wrap--pao-de-juda {
   background: var(--color-maroon);
 }
 .link-btn:hover .link-btn__icon-wrap--pao-de-juda {
-  background: #4A241E;
+  background: #4A241E;  /* maroon escurecido para o estado hover */
 }
 
-/* O texto do link: flex:1 faz ele ocupar todo o espaço disponível
- * entre o ícone e a seta, mantendo ambos nas pontas. */
+/* Label: ocupa todo o espaço entre ícone e seta */
 .link-btn__label {
   flex: 1;
   font-size: 0.9375rem; /* 15px */
@@ -313,16 +280,15 @@ body {
   text-align: left;
 }
 
-/* A seta diagonal no canto direito do botão */
+/* Seta diagonal — semitransparente em repouso */
 .link-btn__arrow {
   display: flex;
   align-items: center;
-  opacity: 0.5;
+  opacity: 0.45;
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-/* No hover, a seta fica mais visível e se move levemente
- * para a direita e para cima (+2px, -2px). */
+/* No hover: mais visível e desloca +2px/-2px (indica direção) */
 .link-btn:hover .link-btn__arrow {
   opacity: 0.9;
   transform: translate(2px, -2px);
@@ -333,14 +299,7 @@ body {
   height: 16px;
 }
 
-/*
- * Delays escalonados nas animações de entrada dos botões.
- * Cada botão aparece 50ms depois do anterior, criando um
- * efeito cascata de cima para baixo na lista.
- *
- * :nth-child(n) seleciona o n-ésimo <li> dentro de .links-list.
- * A animação é aplicada ao .link-btn dentro do <li>.
- */
+/* Delays escalonados: cada botão aparece 50ms após o anterior */
 .links-list li:nth-child(1) .link-btn { animation: fade-in-up 0.6s 0.20s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .links-list li:nth-child(2) .link-btn { animation: fade-in-up 0.6s 0.25s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .links-list li:nth-child(3) .link-btn { animation: fade-in-up 0.6s 0.30s cubic-bezier(0.16, 1, 0.3, 1) both; }
@@ -350,13 +309,18 @@ body {
 /* =========================================================
    8. FOOTER
    =========================================================
-   Rodapé com o texto de copyright.
+   Separador dourado + copyright em navy muted.
+   O dourado no topo do footer fecha visualmente a página
+   na mesma cor quente que o blob inferior.
    ========================================================= */
 
 .site-footer {
   text-align: center;
   font-size: 0.75rem;
   color: var(--color-text-muted);
+
+  /* Linha dourada acima: eco da borda do avatar e do blob inferior */
+  border-top: 1px solid rgba(254, 199, 73, 0.35);
   padding: 16px 0 8px;
   animation: fade-in-up 0.6s 0.40s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
