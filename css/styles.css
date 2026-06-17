@@ -447,17 +447,20 @@ body {
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* O SVG do ícone: tamanho fixo 18×18px */
+/* O SVG do ícone: tamanho fixo 18×18px
+   Ícones de marca usam fill (preenchimento), não stroke (linha). */
 .link-btn__icon-wrap svg {
   width: 18px;
   height: 18px;
-  stroke: var(--color-primary); /* stroke = cor da linha do SVG */
-  transition: stroke 0.25s ease;
+  fill: var(--color-primary);
+  stroke: none;
+  transition: fill 0.25s ease;
 }
 
 /* No hover, o ícone fica branco */
 .link-btn:hover .link-btn__icon-wrap svg {
-  stroke: #ffffff;
+  fill: #ffffff;
+  stroke: none;
 }
 
 /* O texto do link: flex:1 faz ele ocupar todo o espaço disponível
