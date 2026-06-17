@@ -1,4 +1,4 @@
-# Instrucoes de trabalho — bio-cristian
+# Instrucoes de trabalho — bio-igreja
 
 Este documento define **como trabalhar neste projeto**. Ele e de leitura obrigatoria antes de qualquer alteracao relevante e deve ser mantido atualizado sempre que o fluxo mudar.
 
@@ -89,11 +89,11 @@ Projetos (ou iniciativas grandes dentro deles) devem ser quebrados em **fases nu
 Diretrizes:
 - Cada fase tem objetivo, checklist e **criterio de conclusao claro**.
 - Uma fase so comeca quando a anterior esta 100% concluida (sem voltar).
-- **Intercalar fases de testes de funcionalidade** entre fases de construcao quando fizer sentido (ex.: Fase 1, 2, 3 -> Fase de testes -> Fase 4, 5). Nao deixar testes so para o fim.
-- **A ultima fase antes do deploy deve ser uma rodada de testes de seguranca + funcionalidade**, cobrindo: sanitizacao/XSS, auditoria de dependencias, headers, segredos, links externos com `rel="noopener noreferrer"`, smoke test manual e re-execucao da suite automatica.
+- **Intercalar fases de testes de funcionalidade** entre fases de construcao quando fizer sentido.
+- **A ultima fase antes do deploy deve ser uma rodada de testes de seguranca + funcionalidade**, cobrindo: sanitizacao/XSS, auditoria de dependencias, headers, segredos, links externos com `rel="noopener noreferrer"`, smoke test manual.
 - Ao final de cada fase: marcar como concluida no plano **e** criar o registro correspondente em `docs/historico/`.
-- Listar explicitamente o que esta **fora de escopo** (pos-MVP) para evitar looping em partes ja concluidas.
+- Listar explicitamente o que esta **fora de escopo** (pos-MVP).
 
 ## 5. README
 
-O `README.md` da raiz deve refletir o projeto real — nunca deixar template default de gerador/scaffolder. Conteudo minimo: descricao curta, stack, como rodar, scripts, estrutura de pastas, ponteiros para `docs/` e a regra de ouro do historico.
+O `README.md` da raiz deve refletir o projeto real. Conteudo minimo: descricao curta, stack, como rodar, scripts, estrutura de pastas, ponteiros para `docs/` e a regra de ouro do historico.

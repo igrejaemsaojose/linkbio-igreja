@@ -1,7 +1,7 @@
 {
   "//": [
     "============================================================",
-    "package.json — bio-cristian",
+    "package.json — bio-igreja",
     "============================================================",
     "FUNÇÃO DESTE ARQUIVO:",
     "Manifesto do projeto Node.js/npm. Define o nome do pacote,",
@@ -24,7 +24,7 @@
   ],
 
   "//name": "Nome do pacote npm. Deve ser único se publicado no registry npm. Usado internamente para identificar o projeto.",
-  "name": "bio-cristian",
+  "name": "bio-igreja",
 
   "//version": "Versão do projeto no formato semântico: MAJOR.MINOR.PATCH. 1.0.0 = primeira versão estável. Atualizada manualmente a cada release significativo.",
   "version": "1.0.0",

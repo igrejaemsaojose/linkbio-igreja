@@ -1,12 +1,12 @@
-# bio-cristian
+# bio-igreja
 
-Link da bio pessoal do Cristian Dornelles, focado em acesso rapido para canais principais (servicos, WhatsApp, LinkedIn, Instagram e GitHub).
+Link da bio da Igreja em São José, focado em acesso rápido para os canais principais (WhatsApp, YouTube e App Pão de Judah).
 
 ## Stack
 
 | Camada       | Tecnologia                             |
 |---|---|
-| Linguagem    | HTML5 semantico                        |
+| Linguagem    | HTML5 semântico                        |
 | Estilo       | CSS3 puro com custom properties        |
 | Scripts      | JavaScript vanilla (ES6+)              |
 | Dev server   | `npx serve . --listen 3000`            |
@@ -25,28 +25,24 @@ Servidor local: `http://localhost:3000`.
 
 ## Scripts
 
-| Script      | O que faz                     |
+| Script        | O que faz                     |
 |---|---|
-| `npm run dev` | Dev server na porta 3000    |
+| `npm run dev` | Dev server na porta 3000      |
 
 ## Estrutura
 
 ```
-bio-cristian/
+bio-igreja/
 ├── index.html            # pagina unica
 ├── css/
 │   ├── reset.css         # reset de estilos
 │   ├── tokens.css        # CSS custom properties (design tokens)
 │   └── styles.css        # estilos + animacoes
 ├── js/
-│   ├── i18n.js           # sistema de traducao leve (PT/EN)
-│   └── main.js           # inicializacao e logica de pagina
-├── translations/
-│   ├── pt.js             # dicionario em portugues
-│   └── en.js             # dicionario em ingles
+│   └── main.js           # inicializacao da pagina
 ├── assets/
 │   └── images/
-│       └── avatar.png    # foto de perfil
+│       └── avatar.png    # avatar/logo principal
 ├── public/               # favicons e webmanifest
 ├── vercel.json           # deploy sem build
 ├── package.json          # script dev
@@ -55,7 +51,7 @@ bio-cristian/
 └── docs/                 # arquitetura, historico e design-system
 ```
 
-## Documentacao
+## Documentação
 
 - [`docs/arquitetura/`](./docs/arquitetura/) — snapshot tecnico e decisoes de arquitetura.
 - [`docs/historico/`](./docs/historico/) — registro de alteracoes relevantes.

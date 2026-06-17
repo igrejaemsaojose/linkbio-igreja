@@ -1,16 +1,17 @@
-# CLAUDE.md — bio-cristian
+# CLAUDE.md — bio-igreja
 
 Contexto operacional do projeto para agentes de codigo.
 
 ## 1. Visao geral
 
-`bio-cristian` e uma pagina de link da bio (mobile-first) para centralizar pontos de contato e entrada para outros ativos digitais do Cristian.
+`bio-igreja` e uma pagina de link da bio (mobile-first) para centralizar pontos de contato da Igreja em Sao Jose.
 
 Fluxo principal:
-- Toggle de idioma PT | EN no canto superior direito.
-- Card de perfil: avatar + nome + tagline + bio + tags.
-- Lista de cinco botoes de link com icones SVG e label i18n.
-- Footer com copy i18n.
+- Card de perfil: avatar + nome + bio + tags.
+- Lista de quatro botoes de link (WhatsApp, YouTube, App Android e App iOS — Pao de Judah).
+- Footer com copy.
+
+Sem sistema de i18n — pagina somente em portugues.
 
 ## 2. Stack
 
@@ -30,10 +31,8 @@ Fluxo principal:
 - `index.html` — pagina unica completa.
 - `css/tokens.css` — design tokens como CSS custom properties.
 - `css/styles.css` — estilos da aplicacao e animacoes.
-- `js/i18n.js` — sistema de i18n leve (PT/EN).
-- `js/main.js` — ponto de entrada; inicializa i18n e gerencia URL do WhatsApp.
-- `translations/pt.js` e `translations/en.js` — dicionarios de traducao.
-- `assets/images/avatar.png` — avatar principal.
+- `js/main.js` — ponto de entrada da pagina.
+- `assets/images/avatar.png` — avatar/logo principal.
 - `docs/` — arquitetura, instrucoes, historico e design-system.
 
 ## 5. Ponteiros obrigatorios
@@ -48,7 +47,7 @@ Toda alteracao relevante deve gerar um novo arquivo em `docs/historico/` com for
 
 `NN-descricao-curta-AAAA-MM-DD.md`
 
-O proximo numero e `09`.
+O proximo numero e `01`.
 
 ### Antes de alterar
 1. Ler historico completo em ordem numerica.
@@ -66,3 +65,4 @@ O proximo numero e `09`.
 - Conteudo interno dos arquivos: pt-BR.
 - Icones: SVG inline, viewBox 0 0 24 24, stroke="currentColor", fill="none", stroke-width="1.5".
 - Links externos: `target="_blank" rel="noopener noreferrer"`.
+- Sem i18n — pagina somente em portugues.

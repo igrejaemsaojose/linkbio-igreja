@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <!--
   ============================================================
-  index.html — bio-cristian
+  index.html — bio-igreja
   ============================================================
   FUNÇÃO DESTE ARQUIVO:
-  Página única (single page) da "bio" do Cristian Dornelles.
+  Página única (single page) da bio da Igreja em São José.
   Funciona como um "link in bio" — centraliza em um só lugar
-  os principais pontos de contato: WhatsApp, LinkedIn, Instagram,
-  GitHub e o site de serviços (lp-cristian).
+  os principais canais: WhatsApp, YouTube e App Pão de Judah.
 
   ESTRUTURA DA PÁGINA (de cima para baixo):
-  1. <head>  — metadados, SEO, fontes, estilos, traduções
+  1. <head>  — metadados, SEO, fontes, estilos
   2. <body>
      ├── Blobs decorativos (fundos desfocados)
      ├── .page-wrapper
-     │   ├── Toggle de idioma PT/EN
      │   ├── .profile-card (avatar + nome + bio + tags)
-     │   ├── .links-section (lista de 5 botões de link)
+     │   ├── .links-section (lista de 3 botões de link)
      │   └── <footer>
      └── Scripts JS
 
   TECNOLOGIA:
   HTML5 semântico + CSS3 puro + JavaScript Vanilla.
   Sem frameworks, sem build step. Deploy direto no Vercel.
+  Página somente em português — sem sistema de i18n.
   ============================================================
 -->
 <html lang="pt">
-<!--
-  lang="pt" informa ao navegador e a leitores de tela o
-  idioma padrão da página. O i18n.js atualiza esse valor
-  para "en" quando o visitante escolhe inglês.
--->
 <head>
   <!-- Codificação de caracteres UTF-8: garante que acentos,
        cedilhas e outros caracteres especiais sejam exibidos
@@ -44,32 +38,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Meta description: texto exibido nos resultados do Google
-       e em cards de compartilhamento nas redes sociais.
-       Atualizado pelo i18n.js conforme o idioma escolhido. -->
-  <meta name="description" content="Ajudo empresas a transformar operação e vendas com agentes de IA, automação e estratégia digital." />
+       e em cards de compartilhamento nas redes sociais. -->
+  <!-- TODO: substituir pelo texto real da igreja -->
+  <meta name="description" content="Igreja em São José — nossos canais de contato e acesso." />
 
-  <!-- Título da aba do navegador.
-       Atualizado pelo i18n.js via document.title quando o idioma muda. -->
-  <title>Cristian Dornelles</title>
+  <!-- Título da aba do navegador. -->
+  <title>Igreja em São José</title>
 
   <!-- ── Open Graph ──────────────────────────────────────────
        Metadados para compartilhamento em redes sociais
-       (Facebook, LinkedIn, WhatsApp, Telegram, Discord, etc.).
-       Quando alguém compartilha o link, a plataforma usa esses
-       dados para montar o card de preview (título + descrição).
+       (Facebook, Instagram, WhatsApp, Telegram, etc.).
   -->
   <meta property="og:type"        content="website" />
-  <meta property="og:title"       content="Cristian Dornelles" />
-  <meta property="og:description" content="Ajudo empresas a transformar operação e vendas com agentes de IA, automação e estratégia digital." />
+  <meta property="og:title"       content="Igreja em São José" />
+  <!-- TODO: substituir pelo texto real da igreja -->
+  <meta property="og:description" content="Igreja em São José — nossos canais de contato e acesso." />
 
   <!-- ── Favicon (ícone da aba) ──────────────────────────────
-       Múltiplos formatos para compatibilidade máxima:
-       - favicon.svg:   escalável, melhor qualidade em qualquer resolução
-       - favicon.ico:   fallback para navegadores e sistemas legados
-       - 32×32.png:     resolução padrão para a maioria dos navegadores
-       - 16×16.png:     favicon pequeno em barras de favoritos
-       - apple-touch-icon: ícone quando o site é "salvo na tela inicial" do iOS
-       - manifest:      configurações para PWA (Progressive Web App)
+       Múltiplos formatos para compatibilidade máxima.
+       TODO: substituir pelos favicons da marca da igreja.
   -->
   <link rel="icon" type="image/svg+xml" href="public/favicon.svg" />
   <link rel="icon" type="image/x-icon"  href="public/favicon.ico" />
@@ -79,17 +66,8 @@
   <link rel="manifest"            href="public/site.webmanifest" />
 
   <!-- ── Tipografia (Google Fonts) ───────────────────────────
-       Carrega a fonte Sora do Google Fonts.
-
-       rel="preconnect" abre conexão antecipada com os servidores
-       do Google Fonts antes de precisar baixar a fonte. Isso
-       reduz a latência e acelera o carregamento da fonte.
-       crossorigin é necessário para a conexão com gstatic.com.
-
-       O último <link> baixa a fonte em si: pesos 300 a 800
-       da família Sora. display=swap garante que o texto seja
-       exibido com uma fonte do sistema enquanto Sora carrega,
-       evitando "flash de texto invisível" (FOIT).
+       TODO: confirmar fonte após definição do design system.
+       Fonte atual (herdada): Sora.
   -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -103,112 +81,47 @@
        1. reset.css:  zera os estilos padrão do navegador
        2. tokens.css: define as variáveis CSS da marca
        3. styles.css: estilos da aplicação (usa as variáveis acima)
+       TODO: atualizar tokens.css com as cores da marca da igreja.
   -->
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/tokens.css" />
   <link rel="stylesheet" href="css/styles.css" />
-
-  <!-- ── Traduções ───────────────────────────────────────────
-       Carregadas como scripts SÍNCRONOS no <head>, ANTES de
-       qualquer outro script JS.
-       Por quê? O i18n.js (no final do <body>) precisa que
-       window.__i18n.pt e window.__i18n.en já existam quando
-       for chamado. Scripts no <head> executam em ordem,
-       garantindo que os dicionários estejam prontos.
-  -->
-  <script src="translations/pt.js"></script>
-  <script src="translations/en.js"></script>
 </head>
 <body>
 
   <!-- ── BLOBS DECORATIVOS ────────────────────────────────────
        Dois elementos circulares posicionados no fundo da página
-       com posição fixed (ficam parados durante o scroll).
-       São fortemente desfocados (filter:blur no CSS) e
-       criam um efeito visual de "iluminação suave".
-
+       com posição fixed. São fortemente desfocados e criam um
+       efeito visual de "iluminação suave".
        aria-hidden="true" diz aos leitores de tela que estes
-       elementos são puramente decorativos e devem ser ignorados,
-       evitando ruído desnecessário para usuários com deficiência visual.
+       elementos são puramente decorativos.
   -->
   <div class="blob blob--top-left" aria-hidden="true"></div>
   <div class="blob blob--bottom-right" aria-hidden="true"></div>
 
   <!-- ── PAGE WRAPPER ─────────────────────────────────────────
-       Contêiner central que:
-       - Limita a largura máxima (28rem ≈ 448px) — pensada para mobile
-       - Centraliza horizontalmente via margin: 0 auto
-       - Fica na frente dos blobs (z-index: 1 no CSS)
+       Contêiner central que limita a largura máxima (28rem)
+       e centraliza horizontalmente — pensado para mobile.
   -->
   <div class="page-wrapper">
 
-    <!-- ── TOGGLE DE IDIOMA PT/EN ──────────────────────────────
-         Posicionado no canto superior direito via flexbox (CSS).
-         role="group" agrupa semanticamente os dois botões como
-         um controle único para tecnologias assistivas.
-         aria-label descreve o propósito do grupo para leitores de tela.
-    -->
-    <div class="locale-toggle-wrap">
-      <div class="locale-toggle" role="group" aria-label="Selecionar idioma">
-
-        <!-- Botão Português
-             data-locale-btn="pt" → usado pelo i18n.js para identificar
-             qual idioma este botão ativa.
-             aria-pressed="true" → indica que PT está ativo (pressionado).
-             O i18n.js atualiza aria-pressed e adiciona/remove a classe
-             CSS --active conforme o idioma selecionado.
-        -->
-        <button
-          class="locale-toggle__btn"
-          data-locale-btn="pt"
-          aria-pressed="true"
-          type="button"
-        >PT</button>
-
-        <!-- Botão Inglês
-             aria-pressed="false" → EN inativo por padrão (o padrão é PT).
-        -->
-        <button
-          class="locale-toggle__btn"
-          data-locale-btn="en"
-          aria-pressed="false"
-          type="button"
-        >EN</button>
-      </div>
-    </div>
-
     <!-- ── CARD DE PERFIL ──────────────────────────────────────
-         Seção semântica (<section>) que reúne a identidade visual:
-         avatar, nome, bio e tags de especialidade.
-         aria-label="Perfil" descreve o propósito da seção para
-         leitores de tela (que anunciam "Seção: Perfil").
+         Seção semântica com a identidade visual da igreja:
+         avatar, nome, bio e tags.
     -->
     <section class="profile-card" aria-label="Perfil">
 
-      <!-- Blob interno decorativo no topo do card.
-           aria-hidden="true" → ignorado por leitores de tela. -->
+      <!-- Blob interno decorativo no topo do card. -->
       <div class="profile-card__blob" aria-hidden="true"></div>
 
       <!-- ── AVATAR ─────────────────────────────────────────────
-           .avatar-wrap aplica as animações via CSS:
-           1. fade-in-up (0.6s) ao carregar
-           2. float (loop infinito de levitação) depois
-
-           A imagem em si:
-           - alt="Cristian Dornelles": descrição textual para
-             acessibilidade e SEO (leitores de tela leem o alt)
-           - width/height declarados: evitam o "Cumulative Layout Shift"
-             (CLS) — o navegador reserva o espaço antes de carregar a imagem
-           - loading="eager": carrega imediatamente (prioritária, acima do fold)
-           - fetchpriority="high": instrui o navegador a dar alta prioridade
-             ao download desta imagem
-           - decoding="sync": decodifica de forma síncrona para evitar
-             flickering em imagens prioritárias
+           TODO: substituir avatar.png pelo logo/foto da igreja.
+           width/height declarados evitam Cumulative Layout Shift.
       -->
       <div class="avatar-wrap">
         <img
           src="assets/images/avatar.png"
-          alt="Cristian Dornelles"
+          alt="Igreja em São José"
           class="avatar"
           width="128"
           height="128"
@@ -219,117 +132,53 @@
       </div>
 
       <!-- Nome — h1 é o título mais importante da página.
-           Deve existir apenas um h1 por página (SEO e acessibilidade). -->
-      <h1 class="profile-name">Cristian Dornelles</h1>
+           Deve existir apenas um h1 por página. -->
+      <h1 class="profile-name">Igreja em São José</h1>
 
       <!-- Bio — parágrafo descritivo.
-           data-i18n="profile.bio" → o i18n.js substituirá o texto
-           por "Ajudo empresas a crescer..." (PT) ou a versão em EN.
-           O texto estático aqui é o fallback caso o JS não carregue. -->
-      <p class="profile-bio" data-i18n="profile.bio">
-        Ajudo empresas a crescer com tráfego pago, sites que convertem e automações com IA.
+           TODO: substituir pelo texto real da igreja. -->
+      <p class="profile-bio">
+        Bem-vindo! Acesse nossos canais e fique por dentro de tudo.
       </p>
 
-      <!-- Tags de especialidade
-           aria-label="Especialidades" descreve o grupo para leitores de tela.
-           Cada <span> com data-i18n recebe o texto traduzido pelo i18n.js.
-      -->
-      <div class="profile-tags" aria-label="Especialidades">
-        <span class="profile-tag" data-i18n="profile.tag1">Growth Marketing</span>
-        <span class="profile-tag" data-i18n="profile.tag2">Desenvolvimento</span>
-        <span class="profile-tag" data-i18n="profile.tag3">Inteligência Artificial</span>
+      <!-- Tags da igreja.
+           TODO: atualizar com as tags reais da identidade da igreja. -->
+      <div class="profile-tags" aria-label="Tags">
+        <span class="profile-tag">Fé</span>
+        <span class="profile-tag">Comunidade</span>
+        <span class="profile-tag">Evangelismo</span>
       </div>
     </section>
 
     <!-- ── SEÇÃO DE LINKS ───────────────────────────────────────
-         Lista de 5 botões de link para os principais canais.
-         Usa <section> semântica com aria-label para acessibilidade.
+         Lista de 4 botões de link para os principais canais.
     -->
     <section class="links-section" aria-label="Links">
 
-      <!-- "ACESSOS RÁPIDOS" — subtexto acima do título.
-           data-i18n traduz entre PT e EN. -->
-      <p class="links-eyebrow" data-i18n="links.eyebrow">Acessos Rápidos</p>
+      <p class="links-eyebrow">Acessos Rápidos</p>
+      <h2 class="links-title">Nossos Links</h2>
 
-      <!-- "Meus Links" — h2 (segundo nível hierárquico após o h1 do nome) -->
-      <h2 class="links-title" data-i18n="links.title">Meus Links</h2>
-
-      <!-- Lista não-ordenada de links.
-           <ul> é semanticamente correto para uma lista de links relacionados. -->
       <ul class="links-list">
 
-        <!-- ── SERVIÇOS ──────────────────────────────────────────
-             Link para a landing page de serviços (lp-cristian).
-             id="link-servicos" — identificador único (não usado por JS aqui).
-             target="_blank" → abre em nova aba/janela.
-             rel="noopener noreferrer" → segurança: impede que a nova
-             página acesse window.opener da página atual (vetor de ataque).
-
-             Estrutura interna de cada botão:
-             .link-btn__icon-wrap → quadrado com o ícone SVG
-             .link-btn__label     → texto do link (traduzido)
-             .link-btn__arrow     → seta diagonal indicando link externo
-        -->
-        <li>
-          <a
-            href="https://lp.crdornelles.com"
-            id="link-servicos"
-            class="link-btn"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Serviços"
-          >
-            <!-- Ícone: globo/web — representa um site -->
-            <span class="link-btn__icon-wrap" aria-hidden="true">
-              <!-- SVG inline: ícone de globo (círculo + linha + arcos)
-                   viewBox="0 0 24 24" → grade de coordenadas 24×24
-                   fill="none" → sem preenchimento sólido
-                   stroke="currentColor" → cor da linha = cor do texto pai
-                   stroke-width="1.5" → espessura da linha -->
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="2" y1="12" x2="22" y2="12"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-              </svg>
-            </span>
-            <!-- Label traduzido: "Serviços" (PT) ou "Services" (EN) -->
-            <span class="link-btn__label" data-i18n="link.servicos">Serviços</span>
-            <!-- Seta diagonal → indica link externo -->
-            <span class="link-btn__arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <line x1="7" y1="17" x2="17" y2="7"/>
-                <polyline points="7 7 17 7 17 17"/>
-              </svg>
-            </span>
-          </a>
-        </li>
-
         <!-- ── WHATSAPP ──────────────────────────────────────────
-             id="link-whatsapp" → usado pelo main.js para atualizar
-             o href dinamicamente conforme o idioma.
-             O href inicial tem a mensagem em PT.
-             O main.js troca para a mensagem em EN quando necessário.
-
-             Formato da URL do WhatsApp:
-             https://wa.me/[número]?text=[mensagem codificada]
-             O número usa código do Brasil (55) + DDD (55) + número.
+             Abre o WhatsApp com mensagem pré-preenchida de contato.
         -->
         <li>
           <a
-            href="https://wa.me/5555999062078?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20seus%20servi%C3%A7os."
+            href="https://api.whatsapp.com/send/?phone=5548999995841&text=Ol%C3%A1%21+Estava+nas+redes+sociais+da+%2AIgreja+do+Senhor+Jesus+Cristo+em+S%C3%A3o+Jos%C3%A9%2A+e+gostaria+de+uma+ajuda+%F0%9F%99%8F&type=phone_number&app_absent=0"
             id="link-whatsapp"
             class="link-btn"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="WhatsApp"
+            aria-label="Fale conosco pelo WhatsApp"
           >
-            <!-- Ícone: balão de mensagem — representa chat/WhatsApp -->
+            <!-- Ícone: balão de mensagem — representa WhatsApp -->
             <span class="link-btn__icon-wrap" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
               </svg>
             </span>
-            <span class="link-btn__label" data-i18n="link.whatsapp">WhatsApp</span>
+            <span class="link-btn__label">Fale Conosco</span>
             <span class="link-btn__arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                 <line x1="7" y1="17" x2="17" y2="7"/>
@@ -339,27 +188,26 @@
           </a>
         </li>
 
-        <!-- ── LINKEDIN ──────────────────────────────────────────
-             Link para o perfil profissional no LinkedIn.
+        <!-- ── YOUTUBE ───────────────────────────────────────────
+             Canal oficial da Igreja em São José no YouTube.
         -->
         <li>
           <a
-            href="https://www.linkedin.com/in/cristian-dornelles-3b1019190/"
-            id="link-linkedin"
+            href="https://www.youtube.com/@igrejaemsaojose"
+            id="link-youtube"
             class="link-btn"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="LinkedIn"
+            aria-label="Acesse nosso canal no YouTube"
           >
-            <!-- Ícone: logotipo do LinkedIn (caixinha + path + círculo) -->
+            <!-- Ícone: retângulo com triângulo de play — representa YouTube -->
             <span class="link-btn__icon-wrap" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                <rect x="2" y="9" width="4" height="12"/>
-                <circle cx="4" cy="4" r="2"/>
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <polygon points="10 8 16 11 10 14 10 8"/>
               </svg>
             </span>
-            <span class="link-btn__label" data-i18n="link.linkedin">LinkedIn</span>
+            <span class="link-btn__label">Canal no YouTube</span>
             <span class="link-btn__arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                 <line x1="7" y1="17" x2="17" y2="7"/>
@@ -369,27 +217,26 @@
           </a>
         </li>
 
-        <!-- ── INSTAGRAM ─────────────────────────────────────────
-             Link para o perfil @cr.dornelles no Instagram.
+        <!-- ── APP ANDROID (PÃO DE JUDAH) ───────────────────────
+             Link para o app Pão de Judah na Google Play Store.
         -->
         <li>
           <a
-            href="https://www.instagram.com/cr.dornelles"
-            id="link-instagram"
+            href="https://play.google.com/store/apps/details?id=br.com.paodejuda.app"
+            id="link-app-android"
             class="link-btn"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Instagram"
+            aria-label="Baixe o aplicativo Pão de Judah para Android"
           >
-            <!-- Ícone: câmera estilizada (retângulo + círculo + ponto) -->
+            <!-- Ícone: livro aberto — representa o app de conteúdo cristão -->
             <span class="link-btn__icon-wrap" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
               </svg>
             </span>
-            <span class="link-btn__label" data-i18n="link.instagram">Instagram</span>
+            <span class="link-btn__label">App Android — Pão de Judah</span>
             <span class="link-btn__arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                 <line x1="7" y1="17" x2="17" y2="7"/>
@@ -399,25 +246,27 @@
           </a>
         </li>
 
-        <!-- ── GITHUB ────────────────────────────────────────────
-             Link para o perfil @cr-dornelles no GitHub.
+        <!-- ── APP IOS (PÃO DE JUDAH) ────────────────────────────
+             Link para o app Pão de Judah na Apple App Store.
+             App Store ID: 1229503159
         -->
         <li>
           <a
-            href="https://github.com/cr-dornelles"
-            id="link-github"
+            href="https://apps.apple.com/br/app/p%C3%A3o-de-jud%C3%A1/id1229503159"
+            id="link-app-ios"
             class="link-btn"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="GitHub"
+            aria-label="Baixe o aplicativo Pão de Judah para iPhone"
           >
-            <!-- Ícone: logotipo do GitHub (octocat estilizado) -->
+            <!-- Ícone: livro aberto — mesmo ícone do app Android -->
             <span class="link-btn__icon-wrap" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
               </svg>
             </span>
-            <span class="link-btn__label" data-i18n="link.github">GitHub</span>
+            <span class="link-btn__label">App iOS — Pão de Judah</span>
             <span class="link-btn__arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                 <line x1="7" y1="17" x2="17" y2="7"/>
@@ -431,28 +280,18 @@
     </section><!-- /.links-section -->
 
     <!-- ── FOOTER ────────────────────────────────────────────────
-         Rodapé com copyright.
-         data-i18n="footer.copy" → texto traduzido pelo i18n.js.
+         TODO: confirmar texto e ano do copyright.
     -->
     <footer class="site-footer">
-      <p data-i18n="footer.copy">© 2026 Cristian Dornelles. Todos os direitos reservados.</p>
+      <p>© 2026 Igreja em São José. Todos os direitos reservados.</p>
     </footer>
 
   </div><!-- /.page-wrapper -->
 
   <!-- ── SCRIPTS JS ────────────────────────────────────────────
-       Carregados no FIM do <body>, depois que todo o HTML
-       já foi interpretado pelo navegador. Isso garante que
-       os elementos que os scripts manipulam já existam no DOM.
-       (Alternativa seria usar defer no <head>, mas no final do
-       body é mais explícito e tradicional para projetos simples.)
-
-       Ordem obrigatória:
-       1. i18n.js  → configura o sistema de tradução (usa window.__i18n
-                     criado pelos arquivos de tradução no <head>)
-       2. main.js  → inicializa tudo chamando window.__i18n.init()
+       Carregado no FIM do <body>, depois que todo o HTML
+       já foi interpretado pelo navegador.
   -->
-  <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
 
 </body>

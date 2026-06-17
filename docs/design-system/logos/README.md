@@ -1,11 +1,11 @@
 # Logos
 
-Variantes da logo da marca pessoal do Cristian.
+Variantes do logo da Igreja em São José.
 
-Formatos preferidos: SVG (vetorial) e PNG em alta com transparencia.
+Formatos preferidos: SVG (vetorial) e PNG em alta resolução com transparência.
 
 Nomenclatura aplicada neste projeto:
-- `logo-dark.png`
-- `logo-white.png`
+- `logo-dark.png` — logo para fundos claros
+- `logo-white.png` — logo para fundos escuros
 
-Assets oficiais da marca pessoal foram adicionados neste projeto.
+TODO: adicionar os arquivos de logo da igreja.
