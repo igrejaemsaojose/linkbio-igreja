@@ -81,10 +81,12 @@
 
 
   /* ── TIPOGRAFIA ────────────────────────────────────────────
-   * Fonte atual: Sora (sans-serif).
-   * TODO: confirmar fonte com design system final da marca.
+   * Duas fontes com papéis distintos:
+   * --font-heading → Playfair Display (serifa) — títulos e nome da igreja
+   * --font-body    → Rubik (sem serifa) — corpo de texto, labels, footer
    */
-  --font-body: 'Sora', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body:    'Rubik', system-ui, -apple-system, sans-serif;
 
 
   /* ── BORDER RADIUS (ARREDONDAMENTO DE CANTOS) ──────────────

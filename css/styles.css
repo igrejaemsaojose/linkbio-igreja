@@ -208,6 +208,7 @@ body {
 
 /* Nome da igreja (h1 da página) */
 .profile-name {
+  font-family: var(--font-heading);
   /* clamp(mínimo, preferencial, máximo) = tamanho responsivo.
    * Em telas pequenas: pelo menos 1.85rem.
    * Em telas médias: 8% da largura da viewport (8vw).
