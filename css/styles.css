@@ -126,23 +126,22 @@ body {
   filter: blur(80px);
 }
 
-/* Blob no canto superior esquerdo */
+/* Blob no canto superior esquerdo — azul céu da marca */
 .blob--top-left {
   width: 260px;
   height: 260px;
   top: 96px;
-  left: -40px;   /* -40px = parcialmente fora da tela à esquerda */
-  /* hsl com quarto parâmetro = opacidade 10% — quase transparente */
-  background: hsl(240, 100%, 15%, 0.10);
+  left: -40px;
+  background: hsl(198, 80%, 46%, 0.18);
 }
 
-/* Blob no canto inferior direito */
+/* Blob no canto inferior direito — azul céu da marca */
 .blob--bottom-right {
   width: 300px;
   height: 300px;
   bottom: 96px;
-  right: -48px;  /* -48px = parcialmente fora da tela à direita */
-  background: hsl(240, 100%, 12%, 0.10);
+  right: -48px;
+  background: hsl(198, 80%, 40%, 0.14);
 }
 
 
