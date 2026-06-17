@@ -9,7 +9,7 @@
  * são usados em todo o styles.css.
  *
  * POR QUE USAR VARIÁVEIS?
- * Em vez de repetir "#0E8FBB" em 30 lugares do CSS, criamos
+ * Em vez de repetir "#0098DA" em 30 lugares do CSS, criamos
  * a variável --color-primary uma vez aqui. Assim, para mudar
  * a cor principal do site, basta alterar esta linha — e todos
  * os elementos que a usam são atualizados automaticamente.
@@ -26,64 +26,75 @@
  */
 :root {
 
-  /* ── CORES SEMÂNTICAS ──────────────────────────────────────
-   * Identidade visual: Igreja em São José.
-   * Paleta extraída do logo oficial — azul céu + dourado.
+  /* ── CORES DA MARCA ────────────────────────────────────────
+   * Paleta oficial da Igreja em São José (5 cores definidas).
+   * Cada cor tem um papel semântico claro no projeto.
+   *
+   * #0098DA — azul céu vibrante  → cor primária da interface
+   * #17334E — navy profundo      → textos e hover de botões
+   * #5D2E26 — vinho/marrom       → fundo do ícone Pão de Judá
+   * #FEC749 — dourado            → borda do avatar, destaques
+   * #FFF8AF — amarelo muito claro → fundo alternativo sutil
    */
 
-  /* Cor de fundo geral — azul céu muito claro, quase branco */
-  --color-bg:            #EEF9FC;
+  /* Cor de fundo geral — derivada do azul primário, quase branco */
+  --color-bg:            #EDF7FC;
 
   /* Fundo de superfície — cards, painéis */
   --color-surface:       #FFFFFF;
 
-  /* Fundo alternativo levemente mais escuro */
-  --color-surface-alt:   #DFF2FA;
+  /* Fundo alternativo — amarelo palha muito suave da marca */
+  --color-surface-alt:   #FFF8AF;
 
-  /* Cor principal da marca: azul céu (versão escura para contraste em texto) */
-  --color-primary:       #0E8FBB;
+  /* Cor primária da marca: azul céu vibrante */
+  --color-primary:       #0098DA;
 
-  /* Versão mais escura para estados hover */
-  --color-primary-hover: #0A6E92;
+  /* Versão mais escura do primário — usado em hover de elementos de fundo claro */
+  --color-primary-hover: #007BB5;
 
-  /* Cor padrão de textos — azul bem escuro para legibilidade */
-  --color-text:          #07293A;
+  /* Cor padrão de textos — navy profundo da marca */
+  --color-text:          #17334E;
 
-  /* Textos secundários: mesmo azul escuro com 60% de opacidade */
-  --color-text-muted:    rgba(7, 41, 58, 0.6);
+  /* Textos secundários — navy com 60% de opacidade */
+  --color-text-muted:    rgba(23, 51, 78, 0.60);
 
-  /* Texto sobre fundo escuro (ex: texto branco em botão azul) */
+  /* Texto sobre fundo escuro (ex: texto branco em botão navy) */
   --color-text-inverse:  #FFFFFF;
 
-  /* Bordas sutis: 10% de opacidade */
-  --color-border:        rgba(14, 143, 187, 0.10);
+  /* Bordas sutis — azul primário com 12% de opacidade */
+  --color-border:        rgba(0, 152, 218, 0.12);
 
-  /* Bordas com mais destaque: 20% de opacidade */
-  --color-border-strong: rgba(14, 143, 187, 0.20);
+  /* Bordas com mais destaque — azul primário com 22% de opacidade */
+  --color-border-strong: rgba(0, 152, 218, 0.22);
 
-  /* Cor dourada da marca (estrela/sol do logo) */
-  --color-gold:          #F0B030;
+  /* Dourado da marca — borda do avatar, detalhes de destaque */
+  --color-gold:          #FEC749;
+
+  /* Amarelo claro da marca — fundo alternativo, hover suave */
+  --color-gold-light:    #FFF8AF;
+
+  /* Vinho/marrom da marca — fundo do ícone do app Pão de Judá */
+  --color-maroon:        #5D2E26;
 
 
-  /* ── ESCALA AZUL (substitui escala navy) ──────────────────
-   * Série de tons do azul céu da marca, variando por luminosidade.
-   * Usados para gradientes, hover de botões e elementos de destaque.
+  /* ── ESCALA NAVY ──────────────────────────────────────────
+   * Série de tons derivados do navy oficial (#17334E).
+   * H≈209°, S≈55%. Usados em hover de botões e destaques.
    *
-   * H=198° → azul céu/ciano
-   * hsl(198, 80%, 36%) → azul mais escuro (botão hover)
-   * hsl(198, 80%, 51%) → azul mais claro (brilho/destaque)
+   * --navy-base é o #17334E original da marca.
+   * As demais são interpolações mais claras ou escuras.
    */
-  --navy-dark:    hsl(198, 80%, 26%);
-  --navy-base:    hsl(198, 80%, 34%);
-  --navy-mid:     hsl(198, 80%, 40%);
-  --navy-light:   hsl(198, 80%, 46%);
-  --navy-lighter: hsl(198, 80%, 52%);
+  --navy-dark:    hsl(209, 55%, 14%);  /* ~#101F2E */
+  --navy-base:    #17334E;             /* hsl(209, 55%, 20%) — oficial */
+  --navy-mid:     hsl(209, 55%, 26%);  /* ~#1E4265 */
+  --navy-light:   hsl(209, 55%, 32%);  /* ~#26527D */
+  --navy-lighter: hsl(209, 55%, 38%);  /* ~#2E6295 */
 
 
   /* ── TIPOGRAFIA ────────────────────────────────────────────
    * Duas fontes com papéis distintos:
-   * --font-heading → Playfair Display (serifa) — títulos e nome da igreja
-   * --font-body    → Rubik (sem serifa) — corpo de texto, labels, footer
+   * --font-heading → Playfair Display (serifa) — título/nome da igreja
+   * --font-body    → Rubik (sem serifa) — corpo, labels, footer
    */
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body:    'Rubik', system-ui, -apple-system, sans-serif;
