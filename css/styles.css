@@ -229,13 +229,15 @@ body {
     box-shadow     0.25s ease;
 }
 
-/* Hover: navy profundo da marca — máximo contraste com texto branco */
+/* Hover: elevação sutil + borda azul mais forte — sem troca de fundo */
 .link-btn:hover {
-  transform: translateY(-2px);
-  border-color: var(--navy-base);
-  background: var(--navy-base);   /* #17334E */
-  color: var(--color-text-inverse);
-  box-shadow: 0 8px 24px -8px rgba(23, 51, 78, 0.45);
+  transform: translateY(-3px);
+  border-color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.98);
+  color: var(--color-text);
+  box-shadow:
+    0 6px 20px -4px rgba(0, 152, 218, 0.22),
+    0 2px 8px  -2px rgba(23, 51, 78, 0.10);
 }
 
 /* Contêiner do ícone SVG: fundo com tinte leve do azul primário */
@@ -253,9 +255,9 @@ body {
   transition: background 0.25s ease;
 }
 
-/* No hover do botão, o fundo do ícone fica branco translúcido sobre o navy */
+/* No hover, reforça levemente o tinte azul do icon-wrap */
 .link-btn:hover .link-btn__icon-wrap {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 152, 218, 0.14);
 }
 
 /* Tamanho fixo do SVG — sem override de cor (cada ícone usa suas cores de marca) */
@@ -288,9 +290,10 @@ body {
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-/* No hover: mais visível e desloca +2px/-2px (indica direção) */
+/* No hover: mais visível em azul primário e desloca +2px/-2px */
 .link-btn:hover .link-btn__arrow {
-  opacity: 0.9;
+  opacity: 1;
+  color: var(--color-primary);
   transform: translate(2px, -2px);
 }
 
