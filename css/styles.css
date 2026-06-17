@@ -266,12 +266,21 @@ body {
   height: 20px;
 }
 
-/* Pão de Judá: vinho/marrom oficial (#5D2E26) da paleta da marca */
-.link-btn__icon-wrap--pao-de-juda {
-  background: var(--color-maroon);
+/* Icon-wrap com imagem PNG/WEBP/AVIF — sem padding, overflow oculto para
+   respeitar o border-radius do contêiner e recortar a imagem em arco */
+.link-btn__icon-wrap--image {
+  background: transparent;
+  overflow: hidden;
+  padding: 0;
 }
-.link-btn:hover .link-btn__icon-wrap--pao-de-juda {
-  background: #4A241E;  /* maroon escurecido para o estado hover */
+.link-btn__icon-wrap--image img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  display: block;
+}
+.link-btn:hover .link-btn__icon-wrap--image {
+  background: transparent;
 }
 
 /* Label: ocupa todo o espaço entre ícone e seta */
