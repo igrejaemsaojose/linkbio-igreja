@@ -55,15 +55,12 @@
   <meta property="og:description" content="Igreja em São José — nossos canais de contato e acesso." />
 
   <!-- ── Favicon (ícone da aba) ──────────────────────────────
-       Múltiplos formatos para compatibilidade máxima.
-       TODO: substituir pelos favicons da marca da igreja.
+       Usa o símbolo da estrela/sol da marca (favicon.png).
+       apple-touch-icon: ícone quando salvo na tela inicial do iOS.
   -->
-  <link rel="icon" type="image/svg+xml" href="public/favicon.svg" />
-  <link rel="icon" type="image/x-icon"  href="public/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png" />
-  <link rel="apple-touch-icon"    href="public/apple-touch-icon.png" />
-  <link rel="manifest"            href="public/site.webmanifest" />
+  <link rel="icon" type="image/png" href="public/favicon.png" />
+  <link rel="apple-touch-icon"     href="public/apple-touch-icon.png" />
+  <link rel="manifest"             href="public/site.webmanifest" />
 
   <!-- ── Tipografia (Google Fonts) ───────────────────────────
        TODO: confirmar fonte após definição do design system.
@@ -118,8 +115,6 @@
            TODO: substituir avatar.png pelo logo/foto da igreja.
            width/height declarados evitam Cumulative Layout Shift.
       -->
-      <!-- TODO: substituir avatar.png pelo ícone da estrela/sol da marca.
-           Salvar a imagem 2 (símbolo sem texto) em assets/images/avatar.png -->
       <div class="avatar-wrap">
         <img
           src="assets/images/avatar.png"
