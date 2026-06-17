@@ -447,20 +447,31 @@ body {
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* O SVG do ícone: tamanho fixo 18×18px
-   Ícones de marca usam fill (preenchimento), não stroke (linha). */
+/* O SVG do ícone: tamanho fixo 20×20px
+   Cada ícone usa suas cores de marca diretamente no SVG — sem override aqui. */
 .link-btn__icon-wrap svg {
-  width: 18px;
-  height: 18px;
-  fill: var(--color-primary);
-  stroke: none;
-  transition: fill 0.25s ease;
+  width: 20px;
+  height: 20px;
 }
 
-/* No hover, o ícone fica branco */
-.link-btn:hover .link-btn__icon-wrap svg {
-  fill: #ffffff;
-  stroke: none;
+/* Variante para ícone de imagem (ex: app icon PNG).
+   Remove o fundo do icon-wrap e deixa a imagem preencher o espaço. */
+.link-btn__icon-wrap--image {
+  background: transparent;
+  overflow: hidden;
+  padding: 0;
+}
+.link-btn__icon-wrap--image img {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: block;
+  object-fit: cover;
+}
+
+/* No hover, mantém o fundo transparente para ícones de imagem */
+.link-btn:hover .link-btn__icon-wrap--image {
+  background: transparent;
 }
 
 /* O texto do link: flex:1 faz ele ocupar todo o espaço disponível
