@@ -454,8 +454,15 @@ body {
   height: 20px;
 }
 
-/* Variante para ícone de imagem (ex: app icon PNG).
-   Remove o fundo do icon-wrap e deixa a imagem preencher o espaço. */
+/* Variante para o app Pão de Judah — fundo vermelho escuro da marca */
+.link-btn__icon-wrap--pao-de-judah {
+  background: #7B1A1A;
+}
+.link-btn:hover .link-btn__icon-wrap--pao-de-judah {
+  background: #5C1212;
+}
+
+/* Variante para ícone de imagem PNG (uso futuro quando o arquivo existir) */
 .link-btn__icon-wrap--image {
   background: transparent;
   overflow: hidden;
@@ -468,8 +475,6 @@ body {
   display: block;
   object-fit: cover;
 }
-
-/* No hover, mantém o fundo transparente para ícones de imagem */
 .link-btn:hover .link-btn__icon-wrap--image {
   background: transparent;
 }
